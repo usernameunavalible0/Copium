@@ -66,7 +66,7 @@ namespace Vars
 		inline bool Tracers = false;
 		inline bool Thirdperson = true;
 		inline int CustomFOV = 110;
-		inline bool ChangeFov = true;
+		inline bool ChangeFov = false;
 	}
 
 	namespace Trigger
