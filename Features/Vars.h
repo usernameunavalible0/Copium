@@ -64,6 +64,9 @@ namespace Vars
 	{
 		inline bool RemoveVisualRecoil = true;
 		inline bool Tracers = false;
+		inline bool Thirdperson = true;
+		inline int CustomFOV = 110;
+		inline bool ChangeFov = true;
 	}
 
 	namespace Trigger

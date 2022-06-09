@@ -1,6 +1,7 @@
 #include "EngineVGui.h"
 
 #include "../../Features/ESP/ESP.h"
+#include "../../Features/Visual/Visual.hpp"
 
 using namespace Hooks;
 
@@ -23,10 +24,12 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 			{
 				C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);
 
+
 				if (pLocal)
 				{
 					F::ESP.Render(pLocal);
 				}
+
 			}
 
 			G::Draw.String(EFonts::DEBUG, 5, 5, { 204, 204, 204, 255 }, TXT_DEFAULT, L"Copium TF2");

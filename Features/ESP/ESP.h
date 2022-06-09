@@ -13,5 +13,4 @@ private:
 	int WorldToScreen(Vector* pvPos, Vector* pvOut);
 };
 
-inline CFeatures_ESP CEsp;
 namespace F { inline CFeatures_ESP ESP; }

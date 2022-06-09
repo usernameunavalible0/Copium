@@ -5,6 +5,7 @@
 #include "../../Features/Prediction/Prediction.h"
 #include "../../Features/Triggerbot/Triggerbot.hpp"
 #include "../../Features/Aimbot/Aimbot.h"
+#include "../../Features/Visual/Visual.hpp"
 
 #include "../CL_Main/CL_Main.h"
 
@@ -13,6 +14,13 @@ using namespace Hooks;
 void __fastcall ClientMode::OverrideView::Detour(void* ecx, void* edx, CViewSetup* pSetup)
 {
 	Table.Original<FN>(Index)(ecx, edx, pSetup);
+
+	C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);
+
+	if (pLocal)
+	{
+		F::Visual.Run(pLocal, pSetup);
+	}
 }
 
 bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInputSampleTime, CUserCmd* cmd)
@@ -39,6 +47,7 @@ bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInp
 		}
 
 		F::Misc.Run(pLocal, cmd);
+		
 	}
 
 	return false;
