@@ -192,6 +192,7 @@
     <ClCompile Include="Hooks\VGuiPanel\VGuiPanel.cpp" />
     <ClCompile Include="Hooks\ViewRender\ViewRender.cpp" />
     <ClCompile Include="Hooks\WndProc\WndProc.cpp" />
+    <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="SDK\ConVars\ConVars.cpp" />
     <ClCompile Include="SDK\hl2_src\common\netmessages.cpp" />
     <ClCompile Include="SDK\hl2_src\game\client\cdll_util.cpp" />
@@ -324,6 +325,7 @@
     <ClInclude Include="Hooks\VGuiPanel\VGuiPanel.h" />
     <ClInclude Include="Hooks\ViewRender\ViewRender.h" />
     <ClInclude Include="Hooks\WndProc\WndProc.h" />
+    <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="SDK\ConVars\ConVars.h" />
     <ClInclude Include="SDK\Globals\Globals.h" />
     <ClInclude Include="SDK\hl2_src\common\netmessages.h" />
