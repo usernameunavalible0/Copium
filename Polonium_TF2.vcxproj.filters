@@ -132,6 +132,7 @@
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\Visual\Thirdperson.cpp" />
     <ClCompile Include="Features\Visual\VisualsMisc.cpp" />
+    <ClCompile Include="Features\Aimbot\AimbotGlobal\AimbotGlobal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entry\Entry.h" />
@@ -523,6 +524,7 @@
     <ClInclude Include="Features\Triggerbot\triggerbot.hpp" />
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\Visual\Visual.hpp" />
+    <ClInclude Include="Features\Aimbot\AimbotGlobal\AimbotGlobal.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />

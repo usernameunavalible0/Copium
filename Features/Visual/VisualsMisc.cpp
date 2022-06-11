@@ -3,12 +3,13 @@
 
 void CFeatures_Visual::Run(C_TFPlayer* pLocal, CViewSetup* pViewSetup)
 {
-	if (Vars::Visual::ChangeFov)
-		DoFov(pLocal, pViewSetup);
+
 }
 
-void CFeatures_Visual::DoFov(C_TFPlayer* pLocal, CViewSetup* pViewSetup)
+void CFeatures_Visual::DoFov(CViewSetup* pViewSetup)
 {
+	C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);
+
 	if (pLocal && pViewSetup)
 	{
 		if (pLocal->GetObserverMode() == OBS_MODE_IN_EYE)

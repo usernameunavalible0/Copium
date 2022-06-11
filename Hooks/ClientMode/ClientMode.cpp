@@ -15,14 +15,7 @@ void __fastcall ClientMode::OverrideView::Detour(void* ecx, void* edx, CViewSetu
 {
 	Table.Original<FN>(Index)(ecx, edx, pSetup);
 
-	//C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);
-
-	//if (pLocal)
-	//{
-	//	F::Visual.Run(pLocal, pSetup);
-	//}
-
-	//EDITED OUT TO STOP RANDOM CRASHES PROBABLY DUE TO THIS
+	F::Visual.DoFov(pSetup);
 }
 
 bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInputSampleTime, CUserCmd* cmd)

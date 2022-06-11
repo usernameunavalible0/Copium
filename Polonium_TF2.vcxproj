@@ -162,6 +162,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Features\Aimbot\AimbotGlobal\AimbotGlobal.cpp" />
     <ClCompile Include="DllMain.cpp" />
     <ClCompile Include="Entry\Entry.cpp" />
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
@@ -295,6 +296,7 @@
     <ClCompile Include="Util\VFunc\VFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Features\Aimbot\AimbotGlobal\AimbotGlobal.h" />
     <ClInclude Include="Entry\Entry.h" />
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
