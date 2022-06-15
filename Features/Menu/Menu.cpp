@@ -31,7 +31,7 @@ void c_menu::draw_fps()
 		m_font = EFonts::MENU_TAHOMA;
 		m_draw_y = 280.0f;
 
-		G::Draw.Rect(280.0f, m_draw_y, 165.0f, 5.0f, { 1, 1, 1, 1 });
+		G::Draw.Rect(280.0f, 280.0f, 165.0f, 5.0f, { 225, 225, 225, 225 });
 
 		for (const auto& item : m_items)
 		{

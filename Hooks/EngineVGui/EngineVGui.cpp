@@ -27,7 +27,7 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 
 				if (pLocal)
 				{
-					F::menu.draw_fps();
+					// Old Menu F::menu.draw_fps();
 					F::ESP.Render(pLocal);
 				}
 
