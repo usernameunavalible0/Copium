@@ -16,6 +16,7 @@ namespace Vars
 
 		inline bool IgnoreCloaked = false;
 		inline bool IgnoreFriends = false;
+		inline bool IgnoreInvunirible = true;
 		inline int AimHitbox = 2; // 0 fov, 1 dist, 2 auto
 
 		inline int SortMethod = 2; // 0 fov, 1 dist, 2 auto

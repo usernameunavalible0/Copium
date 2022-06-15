@@ -20,4 +20,9 @@ public:
 	IMaterial* CreateMaterial(const char* szVars);
 };
 
+struct Priority {
+	int Mode = 2; // 0 - Friend, 1 - Ignore, 2 - Default, 3 - Rage, 4 - Cheater
+};
+
+
 namespace G { inline CUtil Util; }
