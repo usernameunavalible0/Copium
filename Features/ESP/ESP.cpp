@@ -69,6 +69,18 @@ void CFeatures_ESP::Render(C_TFPlayer* pLocal)
 					nDrawY += G::Draw.GetFontHeight(EFonts::ESP);
 				}
 
+				float r, g, b;
+				pPlayer->GetGlowEffectColor(&r, &g, &b);
+
+				if (Vars::ESP::Players::CustomBoxColor == false)
+				{
+					Vars::ESP::Players::BoxColor = { static_cast<byte>(r * 255.0f), static_cast<byte>(g * 255.0f), static_cast<byte>(b * 255.0f), 255 };
+				}
+				else
+				{
+					Vars::ESP::Players::BoxColor = { 50, 100, 255, 255 };
+				}
+
 				if (Vars::ESP::Players::ActiveWeapon)
 				{
 					C_BaseCombatWeapon* pWeapon = pPlayer->GetActiveWeapon();
@@ -80,20 +92,32 @@ void CFeatures_ESP::Render(C_TFPlayer* pLocal)
 					}
 				}
 
-				Vector lower = pPlayer->GetAbsOrigin();
-				Vector upper(lower.x, lower.y, lower.z + 90);
-				Vector2D bottom, top;
-
-				if (Vars::ESP::Players::Box && GetVectorInScreenSpace(lower, bottom) && GetVectorInScreenSpace(upper, top))
+				if (Vars::ESP::Players::Box)
 				{
-					int size = bottom.y - top.y;
-					int nBoxW = size / 3;
-					int nBoxX = bottom.x - (nBoxW / 2);
-					int nBoxY = top.y;
-					int nBoxH = size;
+					G::Draw.OutlinedRect(x, y, w, h, Vars::ESP::Players::BoxColor);
 
-					G::Draw.OutlinedRect(nBoxX, nBoxY, nBoxW, nBoxH, Vars::ESP::Players::BoxColor);
-					G::Draw.OutlinedRect(nBoxX + 1, nBoxY + 1, nBoxW - 2, nBoxH - 2, Vars::ESP::Players::BoxColor);
+					G::Draw.OutlinedRect(x - 1, y - 1, w + 2, h + 2, { 1, 1, 1, 255 });
+
+					G::Draw.OutlinedRect(x + 1, y + 1, w - 2, h - 2, { 1, 1, 1, 255 });
+				}
+
+				if (Vars::ESP::Players::HealthBar)
+				{
+					x -= 1;
+
+					const float flMaxHealth = static_cast<float>(nMaxHealth);
+					const float flHealth = Clamp<float>(static_cast<float>(nHealth), 1.0f, flMaxHealth);
+
+					static const int nWidth = 2;
+					const int nHeight = (h + (flHealth < flMaxHealth ? 2 : 1));
+					const int nHeight2 = (h + 1);
+
+					const float ratio = (flHealth / flMaxHealth);
+					G::Draw.Rect(static_cast<int>(((x - nWidth) - 2)), static_cast<int>((y + nHeight - (nHeight * ratio))), nWidth, static_cast<int>((nHeight * ratio)), clrHealth);
+					G::Draw.OutlinedRect(static_cast<int>(((x - nWidth) - 2) - 1), static_cast<int>((y + nHeight - (nHeight * ratio)) - 1), nWidth + 2, static_cast<int>((nHeight * ratio) + 1), { 1, 1, 1, 255 });
+
+					x += 1;
+
 				}
 
 				if (Vars::ESP::Players::Outline)

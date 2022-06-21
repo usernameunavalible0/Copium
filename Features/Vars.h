@@ -49,6 +49,7 @@ namespace Vars
 
 		namespace Players
 		{
+			inline bool CustomBoxColor = false;
 			inline bool Enabled = true;
 			inline bool IgnoreTeam = true;
 			inline bool ActiveWeapon = true;
@@ -60,6 +61,7 @@ namespace Vars
 			inline Color OutlineColor = { 242, 194, 0, 255 };
 			inline bool OutlineOtherNoVisable = true;
 			inline Color OutlineOtherColor = { 0, 0, 205, 255 };
+			inline bool HealthBar = true;
 		}
 
 		namespace Buildings

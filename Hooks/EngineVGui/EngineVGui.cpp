@@ -32,7 +32,7 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 
 			}
 
-			G::Draw.String(EFonts::DEBUG, 5, 5, { 204, 204, 204, 255 }, TXT_DEFAULT, L"Copium TF2");
+			G::Draw.String(EFonts::DEBUG, 5, 5, { 204, 204, 204, 255 }, TXT_DEFAULT, L"Copium TF2 By DepressedPotato");
 		}
 		pfFinishDrawing(I::MatSystemSurface);
 	}
