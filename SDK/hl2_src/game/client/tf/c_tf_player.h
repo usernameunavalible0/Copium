@@ -312,6 +312,17 @@ public:
 		return (m_iClass() == nClass);
 	}
 
+	inline bool IsVulnerable()
+	{
+		return !InCond(TF_COND_INVULNERABLE);
+
+	}
+
+	inline bool IsTaunting()
+	{
+		return InCond(TF_COND_TAUNTING);
+	}
+
 	inline bool IsCloaked()
 	{
 		return InCond(TF_COND_STEALTHED)

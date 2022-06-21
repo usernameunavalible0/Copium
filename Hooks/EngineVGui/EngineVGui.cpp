@@ -2,7 +2,6 @@
 
 #include "../../Features/ESP/ESP.h"
 #include "../../Features/Visual/Visual.hpp"
-#include "../../Features/Menu/Menu.h"
 using namespace Hooks;
 
 #define DBG(...) G::Draw.String(EFonts::DEBUG, 5, nY, COLOR_GREY, TXT_DEFAULT, __VA_ARGS__); nY += G::Draw.GetFontHeight(EFonts::DEBUG)

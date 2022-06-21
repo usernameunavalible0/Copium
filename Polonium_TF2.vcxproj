@@ -168,6 +168,7 @@
     <ClCompile Include="Entry\Entry.cpp" />
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\ESP\ESP.cpp" />
+    <ClCompile Include="Features\Menu\InputHelper\InputHelper.cpp" />
     <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="Features\Prediction\Prediction.cpp" />
     <ClCompile Include="Features\Triggerbot\triggerbot.cpp" />
@@ -193,7 +194,7 @@
     <ClCompile Include="Hooks\VGuiPanel\VGuiPanel.cpp" />
     <ClCompile Include="Hooks\ViewRender\ViewRender.cpp" />
     <ClCompile Include="Hooks\WndProc\WndProc.cpp" />
-    <ClCompile Include="Features\OldMenu\Menu.cpp" />
+    <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="SDK\ConVars\ConVars.cpp" />
     <ClCompile Include="SDK\hl2_src\common\netmessages.cpp" />
     <ClCompile Include="SDK\hl2_src\game\client\cdll_util.cpp" />
@@ -303,6 +304,8 @@
     <ClInclude Include="Entry\Entry.h" />
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
+    <ClInclude Include="Features\Menu\ConfigManager\ConfigManager.h" />
+    <ClInclude Include="Features\Menu\InputHelper\InputHelper.h" />
     <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\Prediction\Prediction.h" />
     <ClInclude Include="Features\Triggerbot\triggerbot.hpp" />
@@ -327,7 +330,7 @@
     <ClInclude Include="Hooks\VGuiPanel\VGuiPanel.h" />
     <ClInclude Include="Hooks\ViewRender\ViewRender.h" />
     <ClInclude Include="Hooks\WndProc\WndProc.h" />
-    <ClInclude Include="Features\OldMenu\Menu.h" />
+    <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="SDK\ConVars\ConVars.h" />
     <ClInclude Include="SDK\Globals\Globals.h" />
     <ClInclude Include="SDK\hl2_src\common\netmessages.h" />
@@ -693,6 +696,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Features\Menu\ConfigManager\ConfigManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

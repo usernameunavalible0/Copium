@@ -15,6 +15,8 @@
 
 //#define _VPROF_MATHLIB
 
+
+
 #pragma warning(disable:4244)   // "conversion from 'const int' to 'float', possible loss of data"
 #pragma warning(disable:4730)	// "mixing _m64 and floating point expressions may result in incorrect code"
 
@@ -883,6 +885,9 @@ int __cdecl BoxOnPlaneSide(const float* emins, const float* emaxs, const cplane_
 
 	return sides;
 }
+
+
+
 
 //-----------------------------------------------------------------------------
 // Euler QAngle -> Basis Vectors

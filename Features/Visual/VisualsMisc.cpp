@@ -6,6 +6,11 @@ void CFeatures_Visual::Run(C_TFPlayer* pLocal, CViewSetup* pViewSetup)
 
 }
 
+bool CFeatures_Visual::RemoveScope(int nPanel)
+{
+	
+}
+
 void CFeatures_Visual::DoFov(CViewSetup* pViewSetup)
 {
 	C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);

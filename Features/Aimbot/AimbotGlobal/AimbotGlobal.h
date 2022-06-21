@@ -46,3 +46,5 @@
 
 		std::vector<Target_t> m_vecTargets = {};
 	};
+
+	namespace F { inline CAimbotGlobal AimbotGlobal; }

@@ -792,6 +792,7 @@ inline int ClampArrayBounds(int n, unsigned maxindex)
 	return result;
 }
 
+#define M_RADPI		57.295779513082
 
 #define BOX_ON_PLANE_SIDE(emins, emaxs, p)	\
 	(((p)->type < 3)?						\
@@ -835,6 +836,54 @@ inline void SetScaleMatrix(float flScale, matrix3x4_t& dst)
 {
 	SetScaleMatrix(flScale, flScale, flScale, dst);
 }
+
+inline void AngleVectors(const Vector& angles, Vector* forward)
+{
+	float sp, sy, cp, cy;
+
+	SinCos(DEG2RAD(angles.x), &sp, &cp);
+	SinCos(DEG2RAD(angles.y), &sy, &cy);
+
+	if (forward)
+	{
+		forward->x = cp * cy;
+		forward->y = cp * sy;
+		forward->z = -sp;
+	}
+}
+
+inline Vector CalcAngle(const Vector& source, const Vector& destination)
+{
+	Vector angles = Vector(0.0f, 0.0f, 0.0f);
+	Vector delta = (source - destination);
+	float fHyp = FastSqrt((delta.x * delta.x) + (delta.y * delta.y));
+
+	angles.x = (atanf(delta.z / fHyp) * M_RADPI);
+	angles.y = (atanf(delta.y / delta.x) * M_RADPI);
+	angles.z = 0.0f;
+
+	if (delta.x >= 0.0f)
+		angles.y += 180.0f;
+
+	return angles;
+}
+
+inline float CalcFov(const QAngle& src, const Vector& dst)
+{
+	Vector v_src = Vector();
+	AngleVectors(src, &v_src);
+
+	Vector v_dst = Vector();
+	AngleVectors(dst, &v_dst);
+
+	float result = RAD2DEG(acos(v_dst.Dot(v_src) / v_dst.LengthSqr()));
+
+	if (!isfinite(result) || isinf(result) || isnan(result))
+		result = 0.0f;
+
+	return result;
+}
+
 
 inline void SetScaleMatrix(const Vector& scale, matrix3x4_t& dst)
 {
