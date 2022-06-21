@@ -78,7 +78,8 @@ namespace Vars
 		inline bool Tracers = false;
 		inline bool Thirdperson = true;
 		inline int CustomFOV = 110;
-		inline bool ChangeFov = false;
+		inline bool ChangeFov = true;
+		inline bool RemoveScope = true;
 	}
 
 	namespace Menu

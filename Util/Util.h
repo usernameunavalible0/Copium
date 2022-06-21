@@ -7,5 +7,6 @@
 #include "Offsets/Offsets.h"
 #include "Hook/Hook.h"
 #include "VFunc/VFunc.h"
+#include "Hash/Hash.h"
 
 #define _(x) x

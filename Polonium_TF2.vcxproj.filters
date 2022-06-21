@@ -136,6 +136,7 @@
     <ClCompile Include="Features\Aimbot\AimbotHitscan\AimbotHitscan.cpp" />
     <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="Features\Menu\InputHelper\InputHelper.cpp" />
+    <ClCompile Include="Util\Hash\Hash.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entry\Entry.h" />
@@ -532,6 +533,7 @@
     <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="Features\Menu\InputHelper\InputHelper.h" />
     <ClInclude Include="Features\Menu\ConfigManager\ConfigManager.h" />
+    <ClInclude Include="Util\Hash\Hash.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />
