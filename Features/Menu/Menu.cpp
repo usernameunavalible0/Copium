@@ -68,18 +68,22 @@ void CMenu::CreateLists()
 	{
 		m_ItemLists =
 		{
-			new CItemList
-			{ "ESP",
-			{
-
-			}
-			},
+			//new CItemList
+			//{ "ESP",
+			//{
+			//		new CItemGroup { "Main", {
+			//			new CItemBool(Vars::ESP::)
+			//		}
+			//	}
+			//}
+			//},
 
 			new CItemList
 			{ "Misc",
 			{
 					new CItemGroup { "Main", {
 						new CItemBool(Vars::Misc::Bunnyhop.m_szDisplayName, &Vars::Misc::Bunnyhop.m_Var),
+						new CItemBool(Vars::Misc::AutoStrafe.m_szDisplayName, &Vars::Misc::AutoStrafe.m_Var),
 					}
 				}
 			}
