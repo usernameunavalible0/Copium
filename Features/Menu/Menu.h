@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../SDK/SDK.h"
+#include "../Vars.h"
 
 class CMenu
 {
@@ -9,14 +9,14 @@ private:
 	Rect_t m_LastGroupBox = {};
 
 	void Separator();
-	bool CheckBox(bool& Var, const wchar_t* const szToolTip);
+	bool CheckBox(CVar<bool>& Var, const wchar_t* const szToolTip);
 	bool Button(const wchar_t* Label, bool Active = false, int WidthOverride = 0, int HeightOverride = 0);
-	bool ComboBox(int& Var, const std::vector<int> &List);
-	bool InputFloat(float& Var, float Min, float Max, float Step = 1.0f, const wchar_t* Fmt = L"%f");
-	bool InputInt(int& Var, int Min, int Max, int Step = 1);
+	bool ComboBox(CVar<int>& Var, const std::vector<CVar<int>>& List);
+	bool InputFloat(CVar<float>& Var, float Min, float Max, float Step = 1.0f, const wchar_t* Fmt = L"%f");
+	bool InputInt(CVar<int>& Var, int Min, int Max, int Step = 1);
 	bool InputColor(Color& Var, const wchar_t* Label);
 	bool InputString(const wchar_t* Label, std::wstring& output);
-	bool InputKey(int& output, bool bAllowNone = true);
+	bool InputKey(CVar<int>& output, bool bAllowNone = true);
 	void GroupBoxStart();
 	void GroupBoxEnd(const wchar_t* Label, int Width);
 	void DrawTooltip();
@@ -36,4 +36,4 @@ public:
 	void Run();
 };
 
-namespace F { inline CMenu Menu; }
+namespace F { inline CMenu g_Menu; }

@@ -283,6 +283,7 @@ public:
 		return (I::GlobalVars->curtime >= m_flNextPrimaryAttack());
 	}
 
+
 };
 
 #endif //COMBATWEAPON_SHARED_H

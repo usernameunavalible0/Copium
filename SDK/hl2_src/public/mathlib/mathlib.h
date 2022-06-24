@@ -885,6 +885,60 @@ inline float CalcFov(const QAngle& src, const Vector& dst)
 }
 
 
+#define floatCompare(x, y) \
+	(fabsf(x - y) <= FLT_EPSILON * fmaxf(1.0f, fmaxf(fabsf(x), fabsf(y))))
+
+//adapted from https://github.com/gszauer/GamePhysicsCookbook/blob/15810bbf902c1cc19064c176a7e0626eda3b83bd/Code/Geometry3D.cpp#L584
+inline bool RayToOBB(const  Vector& origin, const  Vector& direction, const Vector& position, const Vector& min, const Vector& max, const matrix3x4_t orientation) {
+
+	Vector p = position - origin;
+
+	Vector X(orientation[0][0], orientation[0][1], orientation[0][2]);
+	Vector Y(orientation[1][0], orientation[1][1], orientation[1][2]);
+	Vector Z(orientation[2][0], orientation[2][1], orientation[2][2]);
+
+	Vector f(
+		X.Dot(direction),
+		Y.Dot(direction),
+		Z.Dot(direction)
+	);
+
+	Vector e(
+		X.Dot(p),
+		Y.Dot(p),
+		Z.Dot(p)
+	);
+
+	float t[6] = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+	for (int i = 0; i < 3; ++i) {
+		if (floatCompare(f[i], 0)) {
+			if (-e[i] + min[i] > 0 || -e[i] + max[i] < 0) {
+				return false;
+			}
+			f[i] = 0.00001f; // Avoid div by 0!
+		}
+
+		t[i * 2 + 0] = (e[i] + max[i]) / f[i]; // tmin[x, y, z]
+		t[i * 2 + 1] = (e[i] + min[i]) / f[i]; // tmax[x, y, z]
+	}
+
+	float tmin = fmaxf(fmaxf(fminf(t[0], t[1]), fminf(t[2], t[3])), fminf(t[4], t[5]));
+	float tmax = fminf(fminf(fmaxf(t[0], t[1]), fmaxf(t[2], t[3])), fmaxf(t[4], t[5]));
+
+	// if tmax < 0, ray is intersecting AABB
+	// but entire AABB is behing it's origin
+	if (tmax < 0) {
+		return false;
+	}
+
+	// if tmin > tmax, ray doesn't intersect AABB
+	if (tmin > tmax) {
+		return false;
+	}
+
+	return true;
+}
+
 inline void SetScaleMatrix(const Vector& scale, matrix3x4_t& dst)
 {
 	SetScaleMatrix(scale.x, scale.y, scale.z, dst);

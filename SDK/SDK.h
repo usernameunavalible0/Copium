@@ -18,6 +18,12 @@ public:
 	Color GetHealthColor(const int nHealth, const int nMaxHealth);
 
 	IMaterial* CreateMaterial(const char* szVars);
+
+	bool VisPos(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to);
+
+	bool VisPosHitboxId(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int nHitbox);
+
+	bool VisPosHitboxIdOut(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int& nHitboxOut);
 };
 
 struct Priority {

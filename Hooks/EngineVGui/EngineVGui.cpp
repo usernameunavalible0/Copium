@@ -2,6 +2,8 @@
 
 #include "../../Features/ESP/ESP.h"
 #include "../../Features/Visual/Visual.hpp"
+#include "../../Features/Menu/Menu.h"
+
 using namespace Hooks;
 
 #define DBG(...) G::Draw.String(EFonts::DEBUG, 5, nY, COLOR_GREY, TXT_DEFAULT, __VA_ARGS__); nY += G::Draw.GetFontHeight(EFonts::DEBUG)
@@ -19,6 +21,8 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 
 		pfStartDrawing(I::MatSystemSurface);
 		{
+			F::g_Menu.Run();
+
 			if (g_Globals.m_bIsInGame && !g_Globals.m_bIsGameUIVisible)
 			{
 				C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);

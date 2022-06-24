@@ -25,8 +25,9 @@
 		TAUNTING = 1 << 4
 	};
 
+
 	struct Target_t {
-		CBaseEntity* m_pEntity = nullptr;
+		IClientEntity* m_pEntity = nullptr; //Carefull with using IClientEntity, shit could get messy
 		ETargetType m_TargetType = ETargetType::UNKNOWN;
 		Vector m_vPos = {};
 		Vector m_vAngleTo = {};

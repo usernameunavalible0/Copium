@@ -25,6 +25,39 @@ bool CUtil::IsVisible(const Vector& vStart, const Vector& vEnd)
 	return !(tr.DidHit());
 }
 
+bool CUtil::VisPos(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to)
+{
+	trace_t tr;
+	CTraceFilterSimpleList filter = NULL;
+	filter.AddEntityToIgnore(pSkip);
+	UTIL_TraceLine(from, to, (MASK_SHOT | CONTENTS_GRATE), &filter, &tr);
+	return ((tr.m_pEnt && tr.m_pEnt == pEntity) || tr.fraction > 0.99f);
+}
+
+bool CUtil::VisPosHitboxId(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int nHitbox)
+{
+	trace_t tr;
+	CTraceFilterSimpleList filter = NULL;
+	filter.AddEntityToIgnore(pSkip);
+	UTIL_TraceLine(from, to, (MASK_SHOT | CONTENTS_GRATE), &filter, &tr);
+	return (tr.m_pEnt && tr.m_pEnt == pEntity && tr.hitbox == nHitbox);
+}
+
+bool CUtil::VisPosHitboxIdOut(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int& nHitboxOut)
+{
+	trace_t trace;
+	CTraceFilterSimpleList filter = NULL;
+	filter.AddEntityToIgnore(pSkip);
+	UTIL_TraceLine(from, to, (MASK_SHOT | CONTENTS_GRATE), &filter, &trace);
+
+	if (trace.m_pEnt && trace.m_pEnt == pEntity) {
+		nHitboxOut = trace.hitbox;
+		return true;
+	}
+
+	return false;
+}
+
 Color CUtil::GetTeamColor(const int nTeam)
 {
 	if (nTeam == 2)

@@ -8,10 +8,11 @@ class CAimbotHitscan
 	ESortMethod GetSortMethod();
 	bool GetTargets(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWeapon);
 	bool ScanHitboxes(C_TFPlayer* pLocal, Target_t& target);
+	bool ScanHead(C_TFPlayer* pLocal, Target_t& Target);
 	bool ScanBuildings(C_TFPlayer* pLocal, Target_t& target);
 	bool VerifyTarget(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWeapon, Target_t& target);
 	bool GetTarget(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWeapon, Target_t& outTarget);
-	void Aim(CUserCmd* cmd, Vector& vAngle);
+	void Aim(CUserCmd* cmd, QAngle& vAngle);
 	bool ShouldFire(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWeapon, CUserCmd* pCmd, const Target_t& target);
 
 	int PriorityHitbox = 1;

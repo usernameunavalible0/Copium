@@ -8,7 +8,7 @@ void CFeatures_Visual::Run(C_TFPlayer* pLocal, CViewSetup* pViewSetup)
 
 bool CFeatures_Visual::RemoveScope(int nPanel)
 {
-	if (!Vars::Visual::RemoveScope) { return false; }
+	if (!Vars::Visual::RemoveScope.m_Var) { return false; }
 
 	if (!m_nHudZoom && Hash::IsHudScope(I::VGuiPanel->GetName(nPanel)))
 	{

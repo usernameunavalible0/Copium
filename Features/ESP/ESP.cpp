@@ -33,7 +33,7 @@ void CFeatures_ESP::Render(C_TFPlayer* pLocal)
 		{
 			case ETFClientClass::CTFPlayer:
 			{
-				if (!Vars::ESP::Players::Enabled)
+				if (!Vars::ESP::Players::Enabled.m_Var)
 					break;
 
 				C_TFPlayer* pPlayer = pEntity->As<C_TFPlayer*>();

@@ -1,5 +1,15 @@
 #pragma once
 
+#include "../SDK/SDK.h"
+
+template <class T>
+class CVar
+{
+public:
+	T m_Var;
+	const wchar_t* m_szDisplayName;
+};
+
 namespace Vars
 {
 	namespace Aimbot
@@ -9,18 +19,28 @@ namespace Vars
 		namespace Hitscan
 		{
 			inline int SortMethod = 0; // 0 fov, 1 distance
+			inline CVar<float> AimFOV{ 45.0f, L"Aim FOV" };
+			inline CVar<bool> ScanHitboxes{ true, L"Scan Body" };
+			inline CVar<bool> ScanHead{ true, L"Scan Head" };
+			inline CVar<bool> ScanBuildings{ true, L"Scan Buildings" };
+			inline CVar<bool> SpectatedSmooth{ true, L"Spectate Smooth" };
+			inline CVar<int> SmoothingAmount { 2, L"Smoothing Amount" };
+			inline CVar<bool> WaitForCharge{ true, L"Wait for charge" };
+			inline CVar<bool> WaitForHeadshot{ false, L"Wait for headshot" };
 		}
 
 		namespace Global
 		{
 
-			inline int AimKey = 1;
-			inline int AimMethod = 3; // 0 normal, 1 smooth, 2 simple smooth, 3 silent
-			inline bool AutoShoot = true;
+			inline CVar<int> AimKey{ 1, L"Active" };
+			inline CVar<int> AimMethod{ 2, L"Aim Method" }; // 0 normal, 1 smooth, 2 silent
+			inline CVar<bool> AutoShoot{ true, L"Autoshoot?" };
 			inline bool WaitForCharge = true;
 
 			inline bool AimPlayers = true;
-			inline bool AimBuildings = true;
+			inline CVar<bool> AimSentry{ false, L"Aim Sentry" };
+			inline CVar<bool> AimDispencer{ false, L"Aim Dispencer" };
+			inline CVar<bool> AimTele{ false, L"Aim Teleporter" };
 
 			inline bool IgnoreCloaked = false;
 			inline bool IgnoreFriends = false;
@@ -30,7 +50,6 @@ namespace Vars
 			inline bool bAimLethal = false;
 
 			inline int SortMethod = 2; // 0 fov, 1 dist, 2 auto
-			inline float AimFOV = 45.0f;
 			inline bool NoMelee = false;
 			inline bool PredictSwing = true;
 			inline bool RangeCheck = true;
@@ -50,7 +69,7 @@ namespace Vars
 		namespace Players
 		{
 			inline bool CustomBoxColor = false;
-			inline bool Enabled = true;
+			inline CVar<bool> Enabled{ true, L"Enabled" };
 			inline bool IgnoreTeam = true;
 			inline bool ActiveWeapon = true;
 			inline bool HealthText = true;
@@ -76,17 +95,17 @@ namespace Vars
 
 	namespace Visual
 	{
-		inline bool RemoveVisualRecoil = true;
+		inline CVar<bool> RemoveVisualRecoil { true, L"Remove Visual Recoil" };
 		inline bool Tracers = false;
 		inline bool Thirdperson = true;
 		inline int CustomFOV = 110;
 		inline bool ChangeFov = true;
-		inline bool RemoveScope = true;
+		inline CVar<bool> RemoveScope { true, L"RemoveScope" };
 	}
 
 	namespace Menu
 	{
-		inline bool ToolTips = false;
+		inline CVar<bool> ToolTips{ false, L"ToolTips" };
 		inline Rect_t Position = { 100, 100, 800, 420 };
 		inline int TitleBarH = 16;
 
@@ -134,8 +153,8 @@ namespace Vars
 
 	namespace Misc
 	{
-		inline bool Bunnyhop = true;
-		inline bool AutoStrafe = true;
-		inline bool BypassPure = true;
+		inline CVar<bool> Bunnyhop{ true, L"Bunnyhop" };
+		inline CVar<bool> AutoStrafe{ true, L"Autostrafe" };
+		inline CVar<bool> BypassPure{ true, L"Bypass Pure" };
 	}
 }

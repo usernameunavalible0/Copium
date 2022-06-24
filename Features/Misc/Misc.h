@@ -17,5 +17,4 @@ private:
 	void DoEdgeJump(C_TFPlayer* pLocal, CUserCmd* cmd);
 };
 
-inline CFeatures_Misc CMisc;
 namespace F { inline CFeatures_Misc Misc; }
