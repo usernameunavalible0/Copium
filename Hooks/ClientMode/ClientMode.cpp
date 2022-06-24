@@ -4,7 +4,6 @@
 #include "../../Features/Misc/Misc.h"
 #include "../../Features/Prediction/Prediction.h"
 #include "../../Features/Triggerbot/Triggerbot.hpp"
-#include "../../Features/Aimbot/Aimbot.h"
 #include "../../Features/Visual/Visual.hpp"
 
 #include "../CL_Main/CL_Main.h"
