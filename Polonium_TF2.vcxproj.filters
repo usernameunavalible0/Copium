@@ -131,9 +131,11 @@
     <ClCompile Include="Features\Triggerbot\triggerbot.cpp" />
     <ClCompile Include="Features\Visual\Thirdperson.cpp" />
     <ClCompile Include="Features\Visual\VisualsMisc.cpp" />
-    <ClCompile Include="Features\Menu\Menu.cpp" />
-    <ClCompile Include="Features\Menu\InputHelper\InputHelper.cpp" />
     <ClCompile Include="Util\Hash\Hash.cpp" />
+    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
+    <ClCompile Include="Features\Menu\Input\Input.cpp" />
+    <ClCompile Include="Features\Menu\Menu.cpp" />
+    <ClCompile Include="Hooks\SurfaceHook\SurfaceHook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entry\Entry.h" />
@@ -524,15 +526,13 @@
     <ClInclude Include="Hooks\BasePlayer\BasePlayer.h" />
     <ClInclude Include="Features\Triggerbot\triggerbot.hpp" />
     <ClInclude Include="Features\Visual\Visual.hpp" />
-    <ClInclude Include="Features\Menu\Menu.h" />
-    <ClInclude Include="Features\Menu\InputHelper\InputHelper.h" />
-    <ClInclude Include="Features\Menu\ConfigManager\ConfigManager.h" />
     <ClInclude Include="Util\Hash\Hash.h" />
+    <ClInclude Include="Features\Aimbot\Aimbot.h" />
+    <ClInclude Include="Features\Menu\Input\Input.h" />
+    <ClInclude Include="Features\Menu\Menu.h" />
+    <ClInclude Include="Hooks\SurfaceHook\SurfaceHook.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Features\Menu\ConfigManager\ConfigManager.cpp" />
   </ItemGroup>
 </Project>

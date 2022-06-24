@@ -7,7 +7,7 @@ class CVar
 {
 public:
 	T m_Var;
-	const wchar_t* m_szDisplayName;
+	const std::string& m_szDisplayName;
 };
 
 namespace Vars
@@ -19,28 +19,29 @@ namespace Vars
 		namespace Hitscan
 		{
 			inline int SortMethod = 0; // 0 fov, 1 distance
-			inline CVar<float> AimFOV{ 45.0f, L"Aim FOV" };
-			inline CVar<bool> ScanHitboxes{ true, L"Scan Body" };
-			inline CVar<bool> ScanHead{ true, L"Scan Head" };
-			inline CVar<bool> ScanBuildings{ true, L"Scan Buildings" };
-			inline CVar<bool> SpectatedSmooth{ true, L"Spectate Smooth" };
-			inline CVar<int> SmoothingAmount { 2, L"Smoothing Amount" };
-			inline CVar<bool> WaitForCharge{ true, L"Wait for charge" };
-			inline CVar<bool> WaitForHeadshot{ false, L"Wait for headshot" };
+			inline CVar<float> AimFOV{ 45.0f, "Aim FOV" };
+			inline CVar<bool> ScanHitboxes{ true, "Scan Body" };
+			inline CVar<bool> ScanHead{ true, "Scan Head" };
+			inline CVar<bool> ScanBuildings{ true, "Scan Buildings" };
+			inline CVar<bool> SpectatedSmooth{ true, "Spectate Smooth" };
+			inline CVar<int> SmoothingAmount { 2, "Smoothing Amount" };
+			inline CVar<bool> WaitForCharge{ true, "Wait for charge" };
+			inline CVar<bool> WaitForHeadshot{ false, "Wait for headshot" };
 		}
 
 		namespace Global
 		{
-
-			inline CVar<int> AimKey{ 1, L"Active" };
-			inline CVar<int> AimMethod{ 2, L"Aim Method" }; // 0 normal, 1 smooth, 2 silent
-			inline CVar<bool> AutoShoot{ true, L"Autoshoot?" };
+			inline CVar<bool> Enabled{ true, "Enabled" };
+			inline CVar<int> AimKey{ VK_SHIFT, "Aim Key" };
+			inline CVar<bool> AlwaysActive{ false, "Always Active" };
+			inline CVar<int> AimMethod{ 2, "Aim Method" }; // 0 normal, 1 smooth, 2 silent
+			inline CVar<bool> AutoShoot{ true, "Autoshoot?" };
 			inline bool WaitForCharge = true;
 
 			inline bool AimPlayers = true;
-			inline CVar<bool> AimSentry{ false, L"Aim Sentry" };
-			inline CVar<bool> AimDispencer{ false, L"Aim Dispencer" };
-			inline CVar<bool> AimTele{ false, L"Aim Teleporter" };
+			inline CVar<bool> AimSentry{ false, "Aim Sentry" };
+			inline CVar<bool> AimDispencer{ false, "Aim Dispencer" };
+			inline CVar<bool> AimTele{ false, "Aim Teleporter" };
 
 			inline bool IgnoreCloaked = false;
 			inline bool IgnoreFriends = false;
@@ -69,7 +70,7 @@ namespace Vars
 		namespace Players
 		{
 			inline bool CustomBoxColor = false;
-			inline CVar<bool> Enabled{ true, L"Enabled" };
+			inline CVar<bool> Enabled{ true, "Enabled" };
 			inline bool IgnoreTeam = true;
 			inline bool ActiveWeapon = true;
 			inline bool HealthText = true;
@@ -95,17 +96,17 @@ namespace Vars
 
 	namespace Visual
 	{
-		inline CVar<bool> RemoveVisualRecoil { true, L"Remove Visual Recoil" };
+		inline CVar<bool> RemoveVisualRecoil { true, "Remove Visual Recoil" };
 		inline bool Tracers = false;
 		inline bool Thirdperson = true;
 		inline int CustomFOV = 110;
 		inline bool ChangeFov = true;
-		inline CVar<bool> RemoveScope { true, L"RemoveScope" };
+		inline CVar<bool> RemoveScope { true, "RemoveScope" };
 	}
 
 	namespace Menu
 	{
-		inline CVar<bool> ToolTips{ false, L"ToolTips" };
+		inline CVar<bool> ToolTips{ false, "ToolTips" };
 		inline Rect_t Position = { 100, 100, 800, 420 };
 		inline int TitleBarH = 16;
 
@@ -153,8 +154,8 @@ namespace Vars
 
 	namespace Misc
 	{
-		inline CVar<bool> Bunnyhop{ true, L"Bunnyhop" };
-		inline CVar<bool> AutoStrafe{ true, L"Autostrafe" };
-		inline CVar<bool> BypassPure{ true, L"Bypass Pure" };
+		inline CVar<bool> Bunnyhop{ true, "Bunnyhop" };
+		inline CVar<bool> AutoStrafe{ true, "Autostrafe" };
+		inline CVar<bool> BypassPure{ true, "Bypass Pure" };
 	}
 }

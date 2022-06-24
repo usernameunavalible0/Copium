@@ -1,39 +1,110 @@
 #pragma once
+#include "../../SDK/SDK.h"
 
-#include "../Vars.h"
+#undef min
+#undef max
+
+enum struct EItemType {
+	DEFAULT,
+	INT,
+	FLOAT,
+	BOOL
+};
+
+class CItemBase
+{
+public:
+	std::string m_Name = {};
+	EItemType e_Type = EItemType::DEFAULT;
+	CItemBase(EItemType type, const std::string& name) : e_Type(type), m_Name(name) {};
+};
+
+class CItemInt : public CItemBase
+{
+public:
+	int* m_Ptr = nullptr;
+	std::vector<std::pair<int, std::string>> m_Aliases = {};
+	int m_Min = std::numeric_limits<int>::min();
+	int m_Max = std::numeric_limits<int>::max();
+
+	int m_AliasIdx = 0;
+
+	CItemInt(const std::string& name,
+		int* ptr,
+		std::vector<std::pair<int, std::string>> aliases = {},
+		int min = std::numeric_limits<int>::min(),
+		int max = std::numeric_limits<int>::max())
+		: CItemBase(EItemType::INT, name), m_Ptr(ptr), m_Aliases(aliases), m_Min(min), m_Max(max)
+	{
+		if (!m_Aliases.empty())
+		{
+			bool Found = false;
+
+			for (const auto& Alias : this->m_Aliases)
+			{
+				if (*reinterpret_cast<int*>(this->m_Ptr) == Alias.first) {
+					this->m_AliasIdx = Alias.first;
+					Found = true;
+					break;
+				}
+			}
+
+			if (!Found)
+				*reinterpret_cast<int*>(this->m_Ptr) = this->m_Aliases.at(0).first;
+		}
+	}
+};
+
+class CItemFloat : public CItemBase
+{
+public:
+	float* m_Ptr = nullptr;
+	float m_Step = 1.0f;
+	float m_Min = std::numeric_limits<float>::min();
+	float m_Max = std::numeric_limits<float>::max();
+
+	CItemFloat(const std::string& name,
+		float* ptr,
+		float step = 1.0f,
+		float min = std::numeric_limits<float>::min(),
+		float max = std::numeric_limits<float>::max())
+		: CItemBase(EItemType::FLOAT, name), m_Ptr(ptr), m_Step(step), m_Min(min), m_Max(max) {}
+};
+
+class CItemBool : public CItemBase
+{
+public:
+	bool* m_Ptr = nullptr;
+	CItemBool(const std::string& name, bool* ptr) : CItemBase(EItemType::BOOL, name), m_Ptr(ptr) {}
+};
+
+class CItemGroup
+{
+public:
+	std::string m_Name = {};
+	std::vector<CItemBase*> m_Items = {};
+	bool m_Open = false;
+};
+
+class CItemList
+{
+public:
+	std::string m_Name = {};
+	std::vector<CItemGroup*> m_ItemGroups = {};
+};
 
 class CMenu
 {
 private:
-	Rect_t m_LastWidget = {};
-	Rect_t m_LastGroupBox = {};
-
-	void Separator();
-	bool CheckBox(CVar<bool>& Var, const wchar_t* const szToolTip);
-	bool Button(const wchar_t* Label, bool Active = false, int WidthOverride = 0, int HeightOverride = 0);
-	bool ComboBox(CVar<int>& Var, const std::vector<CVar<int>>& List);
-	bool InputFloat(CVar<float>& Var, float Min, float Max, float Step = 1.0f, const wchar_t* Fmt = L"%f");
-	bool InputInt(CVar<int>& Var, int Min, int Max, int Step = 1);
-	bool InputColor(Color& Var, const wchar_t* Label);
-	bool InputString(const wchar_t* Label, std::wstring& output);
-	bool InputKey(CVar<int>& output, bool bAllowNone = true);
-	void GroupBoxStart();
-	void GroupBoxEnd(const wchar_t* Label, int Width);
-	void DrawTooltip();
-
-private:
-	bool m_bReopened = false;
-	std::wstring m_szCurTip = L"";
+	std::vector<CItemList*> m_ItemLists = {};
+	void CreateLists();
 
 public:
-	float m_flFadeAlpha = 0.0f;
-	float m_flFadeElapsed = 0.0f;
-	float m_flFadeDuration = 0.1f;
+	bool m_Open = false;
+	bool m_OnAimbotFOV = false;
 
-public:
-	bool m_bOpen = false;
-	bool m_bTyping = false;
+	~CMenu();
 	void Run();
 };
 
-namespace F { inline CMenu g_Menu; }
+extern CMenu gMenu;

@@ -164,8 +164,8 @@
   <ItemGroup>
     <ClCompile Include="DllMain.cpp" />
     <ClCompile Include="Entry\Entry.cpp" />
+    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\ESP\ESP.cpp" />
-    <ClCompile Include="Features\Menu\InputHelper\InputHelper.cpp" />
     <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="Features\Prediction\Prediction.cpp" />
     <ClCompile Include="Features\Triggerbot\triggerbot.cpp" />
@@ -186,11 +186,13 @@
     <ClCompile Include="Hooks\ModelRender\ModelRender.cpp" />
     <ClCompile Include="Hooks\NetChannel\NetChannel.cpp" />
     <ClCompile Include="Hooks\SequenceTransitioner\SequenceTransitioner.cpp" />
+    <ClCompile Include="Hooks\SurfaceHook\SurfaceHook.cpp" />
     <ClCompile Include="Hooks\TFPlayer\TFPlayer.cpp" />
     <ClCompile Include="Hooks\TFWeaponBase\TFWeaponBase.cpp" />
     <ClCompile Include="Hooks\VGuiPanel\VGuiPanel.cpp" />
     <ClCompile Include="Hooks\ViewRender\ViewRender.cpp" />
     <ClCompile Include="Hooks\WndProc\WndProc.cpp" />
+    <ClCompile Include="Features\Menu\Input\Input.cpp" />
     <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="SDK\ConVars\ConVars.cpp" />
     <ClCompile Include="SDK\hl2_src\common\netmessages.cpp" />
@@ -298,9 +300,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entry\Entry.h" />
+    <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
-    <ClInclude Include="Features\Menu\ConfigManager\ConfigManager.h" />
-    <ClInclude Include="Features\Menu\InputHelper\InputHelper.h" />
     <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\Prediction\Prediction.h" />
     <ClInclude Include="Features\Triggerbot\triggerbot.hpp" />
@@ -320,11 +321,13 @@
     <ClInclude Include="Hooks\ModelRender\ModelRender.h" />
     <ClInclude Include="Hooks\NetChannel\NetChannel.h" />
     <ClInclude Include="Hooks\SequenceTransitioner\SequenceTransitioner.h" />
+    <ClInclude Include="Hooks\SurfaceHook\SurfaceHook.h" />
     <ClInclude Include="Hooks\TFPlayer\TFPlayer.h" />
     <ClInclude Include="Hooks\TFWeaponBase\TFWeaponBase.h" />
     <ClInclude Include="Hooks\VGuiPanel\VGuiPanel.h" />
     <ClInclude Include="Hooks\ViewRender\ViewRender.h" />
     <ClInclude Include="Hooks\WndProc\WndProc.h" />
+    <ClInclude Include="Features\Menu\Input\Input.h" />
     <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="SDK\ConVars\ConVars.h" />
     <ClInclude Include="SDK\Globals\Globals.h" />
@@ -692,9 +695,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Features\Menu\ConfigManager\ConfigManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
