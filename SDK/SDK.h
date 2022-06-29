@@ -24,11 +24,40 @@ public:
 	bool VisPosHitboxId(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int nHitbox);
 
 	bool VisPosHitboxIdOut(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int& nHitboxOut);
+
+	void ClampAngle(QAngle& qaAng)
+	{
+		while (qaAng.x > 89)
+			qaAng.x -= 180;
+
+		while (qaAng.x < -89)
+			qaAng.x += 180;
+
+		while (qaAng.y > 180)
+			qaAng.y -= 360;
+
+		while (qaAng.y < -180)
+			qaAng.y += 360;
+
+		while (qaAng.z != 0)
+			qaAng.z = 0;
+	}
+
+	bool IsHeadshotWeapon(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWep);
+
+	bool IsVisible2(C_TFPlayer* pLocal, C_BaseEntity* pEntity, Vector vStart, Vector vEnd);
+
+	float flGetDistance(Vector vOrigin, Vector vLocalOrigin);
+
+	void AngleNormalize(Vector& v);
+
+	bool CanShoot(C_TFPlayer* pLocal);
 };
 
 struct Priority {
 	int Mode = 2; // 0 - Friend, 1 - Ignore, 2 - Default, 3 - Rage, 4 - Cheater
 };
+
 
 
 namespace G { inline CUtil Util; }

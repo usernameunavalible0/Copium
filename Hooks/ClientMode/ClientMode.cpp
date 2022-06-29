@@ -5,7 +5,7 @@
 #include "../../Features/Prediction/Prediction.h"
 #include "../../Features/Triggerbot/Triggerbot.hpp"
 #include "../../Features/Visual/Visual.hpp"
-
+#include "../../Features/Aimbot/Aimbot.h"
 #include "../CL_Main/CL_Main.h"
 
 using namespace Hooks;
@@ -35,7 +35,8 @@ bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInp
 		{
 			F::Prediction.Start(pLocal, cmd);
 			{
-				F::Triggerbot.Run(pLocal, cmd);
+				//F::gAim.Run(pLocal, cmd);
+				//F::Triggerbot.Run(pLocal, cmd);
 			}
 			F::Prediction.Finish(pLocal);
 		}

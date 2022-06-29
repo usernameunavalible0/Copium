@@ -22,6 +22,7 @@
 #include "../../public/datamap.h"
 #include "../shared/usercmd.h"
 #include "../shared/ehandle.h"
+#include "../../public/engine/ivmodelinfo.h"
 
 namespace I { inline int32* PredictionRandomSeed = nullptr; }
 
@@ -355,6 +356,37 @@ public:
 	inline int GetMoveType()
 	{
 		return *reinterpret_cast<int*>(reinterpret_cast<DWORD>(this) + 0x1A4);
+	}
+
+	inline Vector GetHitboxPosition(int iHitbox)
+	{
+		const model_t* model = GetModel();
+		if (!model)
+			return Vector();
+
+		studiohdr_t* hdr = I::ModelInfoClient->GetStudiomodel(model);
+		if (!hdr)
+			return Vector();
+
+		matrix3x4_t matrix[128];
+		if (!SetupBones(matrix, 128, 0x100, I::GlobalVars->curtime))
+			return Vector();
+
+		mstudiohitboxset_t* set = hdr->pHitboxSet(hdr->hitboxsetindex);
+		if (!set)
+			return Vector();
+
+		mstudiobbox_t* box = set->pHitbox(iHitbox);
+		if (!box)
+			return Vector();
+
+		Vector center = (box->bbmin + box->bbmax) * 0.5f;
+
+		Vector vHitbox;
+
+		VectorTransform(center, matrix[box->bone], vHitbox);
+
+		return vHitbox;
 	}
 
 	inline C_BaseEntity* FirstMoveChild()

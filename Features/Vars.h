@@ -18,6 +18,7 @@ namespace Vars
 
 		namespace Hitscan
 		{
+			inline CVar<bool> ZoomedOnly{ false, "Zoomed Only" };
 			inline int SortMethod = 0; // 0 fov, 1 distance
 			inline CVar<float> AimFOV{ 45.0f, "Aim FOV" };
 			inline CVar<bool> ScanHitboxes{ true, "Scan Body" };
@@ -31,6 +32,8 @@ namespace Vars
 
 		namespace Global
 		{
+			inline CVar<bool> SilentAim{ false, "Enable Silent Aimbot" };
+			inline CVar<bool> IgnoreDisguised{ false, "Ignore Disguised" };
 			inline CVar<bool> Enabled{ true, "Enabled" };
 			inline CVar<int> AimKey{ VK_SHIFT, "Aim Key" };
 			inline CVar<bool> AlwaysActive{ false, "Always Active" };
@@ -47,7 +50,7 @@ namespace Vars
 			inline bool IgnoreFriends = false;
 			inline bool IgnoreInvunirible = true;
 			inline bool IgnoreTaunting = false;
-			inline int AimHitbox = 2; // 0 fov, 1 dist, 2 auto
+			inline int AimHitbox = 2; // 0 auto, 1 head, 2 body
 			inline bool bAimLethal = false;
 
 			inline int SortMethod = 2; // 0 fov, 1 dist, 2 auto
@@ -55,7 +58,7 @@ namespace Vars
 			inline bool PredictSwing = true;
 			inline bool RangeCheck = true;
 
-			inline float SmoothDuration = 0.2f;
+			inline float SmoothDuration = 0.0f;
 			inline float SmoothSimple = 5.0f;
 
 			inline float DrawAimFov = 0.1f;

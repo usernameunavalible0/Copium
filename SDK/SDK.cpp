@@ -43,6 +43,40 @@ bool CUtil::VisPosHitboxId(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vec
 	return (tr.m_pEnt && tr.m_pEnt == pEntity && tr.hitbox == nHitbox);
 }
 
+float CUtil::flGetDistance(Vector vOrigin, Vector vLocalOrigin)
+{
+	Vector vDelta = vOrigin - vLocalOrigin;
+
+	float m_fDistance = sqrt(vDelta.Length());
+
+	if (m_fDistance < 1.0f)
+		return 1.0f;
+
+	return m_fDistance;
+}
+
+void CUtil::AngleNormalize(Vector& v)
+{
+	for (auto i = 0; i < 3; i++)
+	{
+		if (v[i] < -180.0f) v[i] += 360.0f;
+		if (v[i] > 180.0f) v[i] -= 360.0f;
+	}
+}
+
+bool CUtil::CanShoot(C_TFPlayer* pLocal)
+{
+	C_BaseCombatWeapon* pWep = pLocal->GetLastWeapon();
+
+	if (!pWep)
+		return false;
+
+	if (!pLocal->IsAlive())
+		return false;
+
+	return (pWep->GetWeaponIdleTime() < pLocal->m_nTickBase() * I::GlobalVars->interval_per_tick);
+}
+
 bool CUtil::VisPosHitboxIdOut(C_BaseEntity* pSkip, C_BaseEntity* pEntity, const Vector& from, const Vector& to, int& nHitboxOut)
 {
 	trace_t trace;
@@ -99,4 +133,31 @@ IMaterial* CUtil::CreateMaterial(const char* szVars)
 	pMaterial->AddRef();
 
 	return pMaterial;
+}
+
+bool CUtil::IsHeadshotWeapon(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWep)
+{
+	if (pWep->GetSlot() == 0 && pLocal->m_iClass() == TF_CLASS_SNIPER)
+		if (pWep->m_iItemDefinitionIndex() != Sniper_m_TheHuntsman && pWep->m_iItemDefinitionIndex() != Sniper_m_TheFortifiedCompound)
+			return true;
+
+	if (pWep->m_iItemDefinitionIndex() == Spy_m_TheAmbassador || pWep->m_iItemDefinitionIndex() == Spy_m_FestiveAmbassador)
+		return true;
+
+	return false;
+}
+
+bool CUtil::IsVisible2(C_TFPlayer* pLocal, C_BaseEntity* pEntity, Vector vStart, Vector vEnd)
+{
+	trace_t Trace;
+	Ray_t Ray;			 // the future of variable naming
+	CTraceFilterSimpleList Filter = NULL;
+
+	Filter.AddEntityToIgnore(pLocal);
+
+	Ray.Init(vStart, vEnd);
+
+	I::EngineTrace->TraceRay(Ray, MASK_SHOT, &Filter, &Trace);
+
+	return (Trace.m_pEnt == pEntity || Trace.fraction == 1.0);
 }
