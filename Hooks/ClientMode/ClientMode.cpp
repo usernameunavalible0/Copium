@@ -5,7 +5,7 @@
 #include "../../Features/Prediction/Prediction.h"
 #include "../../Features/Triggerbot/Triggerbot.hpp"
 #include "../../Features/Visual/Visual.hpp"
-#include "../../Features/Aimbot/Aimbot.h"
+//#include "../../Features/Aimbot/Aimbot.h"
 #include "../CL_Main/CL_Main.h"
 
 using namespace Hooks;

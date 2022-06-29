@@ -132,7 +132,6 @@
     <ClCompile Include="Features\Visual\Thirdperson.cpp" />
     <ClCompile Include="Features\Visual\VisualsMisc.cpp" />
     <ClCompile Include="Util\Hash\Hash.cpp" />
-    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\Menu\Input\Input.cpp" />
     <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="Hooks\SurfaceHook\SurfaceHook.cpp" />
@@ -527,7 +526,6 @@
     <ClInclude Include="Features\Triggerbot\triggerbot.hpp" />
     <ClInclude Include="Features\Visual\Visual.hpp" />
     <ClInclude Include="Util\Hash\Hash.h" />
-    <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\Menu\Input\Input.h" />
     <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="Hooks\SurfaceHook\SurfaceHook.h" />
