@@ -173,6 +173,7 @@ bool CInterfaces::Initialize()
 	I::PredictionRandomSeed = *reinterpret_cast<int32**>(g_Offsets.m_dwPredictionRandomSeed);
 	XASSERTFALSE(I::PredictionRandomSeed == nullptr);
 
+	
 	{
 		const PDWORD pdwClient = reinterpret_cast<PDWORD>(I::BaseClient);
 		XASSERTFALSE(pdwClient == nullptr);

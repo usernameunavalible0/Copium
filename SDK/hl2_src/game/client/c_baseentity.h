@@ -45,6 +45,8 @@ class C_BaseCombatCharacter;
 class C_BaseCombatWeapon;
 class C_BaseEntity;
 class C_TFKnife;
+class CGameTrace;
+typedef CGameTrace trace_t;
 
 struct FireBulletsInfo_t;
 struct EmitSound_t;
@@ -94,6 +96,7 @@ typedef void (C_BaseEntity::* ENTITYFUNCPTR)(C_BaseEntity* pOther);
 
 // For entity creation on the client
 typedef C_BaseEntity* (*DISPATCHFUNCTION)(void);
+
 
 #if !defined( NO_ENTITY_PREDICTION )
 //-----------------------------------------------------------------------------
@@ -358,6 +361,9 @@ public:
 		return *reinterpret_cast<int*>(reinterpret_cast<DWORD>(this) + 0x1A4);
 	}
 
+	bool IsVisible(C_BaseEntity* pLocal);
+
+
 	inline Vector GetHitboxPosition(int iHitbox)
 	{
 		const model_t* model = GetModel();
@@ -388,6 +394,18 @@ public:
 
 		return vHitbox;
 	}
+
+	inline Vector GetVelocity()
+	{
+		typedef void(__thiscall* estimate_abs_velocity_fn)(C_BaseEntity*, Vector&);
+		static auto function = g_Pattern.Find("client.dll", "E8 ? ? ? ? F3 0F 10 4D ? 8D 85 ? ? ? ? F3 0F 10 45 ? F3 0F 59 C9 56 F3 0F 59 C0 F3 0F 58 C8 0F 2F 0D ? ? ? ? 76 07") + 0x1;
+		static uintptr_t estimate = ((*(PDWORD)(function)) + function + 4);
+
+		estimate_abs_velocity_fn vel = (estimate_abs_velocity_fn)estimate;
+		Vector v; vel(this, v); return v;
+	}
+
+	
 
 	inline C_BaseEntity* FirstMoveChild()
 	{

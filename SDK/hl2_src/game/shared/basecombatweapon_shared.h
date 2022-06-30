@@ -277,13 +277,12 @@ public:
 	M_NETVAR(m_iWorldModelIndex, int, "CBaseCombatWeapon", "m_iWorldModelIndex");
 	M_NETVAR(m_iState, int, "CBaseCombatWeapon", "m_iState");
 	M_NETVAR(m_hOwner, CBaseCombatCharacterHandle, "CBaseCombatWeapon", "m_hOwner");
-
+	M_NETVAR(m_flChargeBeginTime, float, "CBaseCombatWeapon", "m_flChargeBeginTime");
 public:
 	inline bool CanPrimaryAttack()
 	{
 		return (I::GlobalVars->curtime >= m_flNextPrimaryAttack());
 	}
-
 
 };
 

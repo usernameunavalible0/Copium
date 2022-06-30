@@ -52,6 +52,13 @@ public:
 	void AngleNormalize(Vector& v);
 
 	bool CanShoot(C_TFPlayer* pLocal);
+
+	bool GetProjectileInfo(C_TFPlayer* pLocal, float& speed, float& gravity);
+
+	Vector VecViewAngles(CUserCmd* cmd);
+
+
+	Vector CalcAngleProjectile(const Vector& source, const Vector& destination);
 };
 
 struct Priority {
