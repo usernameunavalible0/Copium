@@ -37,7 +37,7 @@ namespace Vars
 			inline CVar<bool> Enabled{ true, "Enabled" };
 			inline CVar<int> AimKey{ VK_SHIFT, "Aim Key" };
 			inline CVar<bool> AlwaysActive{ false, "Always Active" };
-			inline CVar<int> AimMethod{ 2, "Aim Method" }; // 0 normal, 1 smooth, 2 silent
+			inline CVar<int> AimMethod{ 0, "Aim Method" }; // 0 normal, 1 smooth, 2 silent
 			inline CVar<bool> AutoShoot{ true, "Autoshoot?" };
 			inline bool WaitForCharge = true;
 
@@ -50,7 +50,7 @@ namespace Vars
 			inline bool IgnoreFriends = false;
 			inline bool IgnoreInvunirible = true;
 			inline bool IgnoreTaunting = false;
-			inline int AimHitbox = 2; // 0 auto, 1 head, 2 body
+			inline int AimHitbox = 0; // 0 auto, 1 head, 2 body
 			inline bool bAimLethal = false;
 
 			inline int SortMethod = 2; // 0 fov, 1 dist, 2 auto

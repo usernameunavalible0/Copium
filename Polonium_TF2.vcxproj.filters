@@ -135,7 +135,7 @@
     <ClCompile Include="Features\Menu\Input\Input.cpp" />
     <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="Hooks\SurfaceHook\SurfaceHook.cpp" />
-    <ClCompile Include="Features\Aimbot2\Aimbot.cpp" />
+    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entry\Entry.h" />
@@ -531,7 +531,7 @@
     <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="Hooks\SurfaceHook\SurfaceHook.h" />
     <ClInclude Include="Features\Bruh\Extern.h" />
-    <ClInclude Include="Features\Aimbot2\Aimbot.h" />
+    <ClInclude Include="Features\Aimbot\Aimbot.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />
