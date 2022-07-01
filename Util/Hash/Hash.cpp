@@ -48,26 +48,26 @@ const char* ToHash[] =
 		"info"
 };
 
-void Hash::PrintHash()
-{
-#ifdef _DEBUG
-	int ArraySize = (sizeof(ToHash) / sizeof(ToHash[0]));
+//void Hash::PrintHash()
+//{
+//#ifdef _DEBUG
+//	int ArraySize = (sizeof(ToHash) / sizeof(ToHash[0]));
+//
+//	for (int n = 0; n < ArraySize; n++)
+//	{
+//		std::string szPrintName = "";
+//
+//		for (unsigned Char = 0; Char < strlen(ToHash[n]); Char++)
+//		{
+//			if (ToHash[n][Char] != '/' && ToHash[n][Char] != '.')
+//				szPrintName += ToHash[n][Char];
+//		}
+//
+//		I::CVars->ConsolePrintf("constexpr size_owned %s = %lu;\n", szPrintName.data(), m_Hash(ToHash[n]));
+//	}
 
-	for (int n = 0; n < ArraySize; n++)
-	{
-		std::string szPrintName = "";
-
-		for (unsigned Char = 0; Char < strlen(ToHash[n]); Char++)
-		{
-			if (ToHash[n][Char] != '/' && ToHash[n][Char] != '.')
-				szPrintName += ToHash[n][Char];
-		}
-
-		I::CVars->ConsolePrintf("constexpr size_owned %s = %lu;\n", szPrintName.data(), m_Hash(ToHash[n]));
-	}
-
-#endif
-}
+//#endif
+//}
 
 bool Hash::IsHudScope(const char* szName)
 {

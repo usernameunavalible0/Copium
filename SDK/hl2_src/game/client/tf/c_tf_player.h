@@ -225,6 +225,38 @@ public:
 	M_NETVAR(m_bViewingCYOAPDA, bool, "CTFPlayer", "m_bViewingCYOAPDA");
 	
 public:
+
+	inline Vector GetHitboxPosition(int iHitbox)
+	{
+		const model_t* model = GetModel();
+		if (!model)
+			return Vector();
+
+		studiohdr_t* hdr = I::ModelInfoClient->GetStudiomodel(model);
+		if (!hdr)
+			return Vector();
+
+		matrix3x4_t matrix[128];
+		if (!SetupBones(matrix, 128, 0x100, I::GlobalVars->curtime))
+			return Vector();
+
+		mstudiohitboxset_t* set = hdr->pHitboxSet(m_nHitboxSet()); // WHAT IS THIS
+		if (!set)
+			return Vector();
+
+		mstudiobbox_t* box = set->pHitbox(iHitbox);
+		if (!box)
+			return Vector();
+
+		Vector center = (box->bbmin + box->bbmax) * 0.5f;
+
+		Vector vHitbox;
+
+		VectorTransform(center, matrix[box->bone], vHitbox);
+
+		return vHitbox;
+	}
+
 	C_TFWeaponBase* GetActiveTFWeapon();
 
 	inline float m_flInvisibility()

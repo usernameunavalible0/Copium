@@ -2,10 +2,6 @@
 
 #include "../Vars.h"
 
-int CFeatures_ESP::WorldToScreen(Vector* pvPos, Vector* pvOut)
-{
-
-}
 
 void CFeatures_ESP::Render(C_TFPlayer* pLocal)
 {

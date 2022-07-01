@@ -149,6 +149,7 @@ public:
 	M_NETVAR(m_fadeMinDist, float, "CBaseAnimating", "m_fadeMinDist");
 	M_NETVAR(m_fadeMaxDist, float, "CBaseAnimating", "m_fadeMaxDist");
 	M_NETVAR(m_flFadeScale, float, "CBaseAnimating", "m_flFadeScale");
+	//M_NETVAR(m_nHitboxSet)
 
 public:
 	inline std::array<float, MAXSTUDIOPOSEPARAM>& m_flPoseParameter()
