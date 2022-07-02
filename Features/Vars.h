@@ -20,7 +20,7 @@ namespace Vars
 		{
 			inline CVar<bool> ZoomedOnly{ false, "Zoomed Only" };
 			inline int SortMethod = 0; // 0 fov, 1 distance
-			inline CVar<float> AimFOV{ 45.0f, "Aim FOV" };
+			inline CVar<float> AimFOV{ 180.0f, "Aim FOV" };
 			inline CVar<bool> ScanHitboxes{ true, "Scan Body" };
 			inline CVar<bool> ScanHead{ true, "Scan Head" };
 			inline CVar<bool> ScanBuildings{ true, "Scan Buildings" };

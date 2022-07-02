@@ -126,7 +126,7 @@ void CAimbot::Projectile(C_TFPlayer* local_player, C_TFPlayer* entity, C_BaseCom
 			Vector result = hitbox, bestpos = result;
 
 			auto vec_velocity = gAim.EstimateAbsVelocity(entity);
-			auto medianTime = (local_player->EyePosition().DistTo(result) / speed), range = 1.5f,
+			auto medianTime = (local_player->Weapon_ShootPosition().DistTo(result) / speed), range = 1.5f,
 				currenttime = medianTime - range;
 
 			if (currenttime <= 0.0f) currenttime = 0.01f;
@@ -142,7 +142,7 @@ void CAimbot::Projectile(C_TFPlayer* local_player, C_TFPlayer* entity, C_BaseCom
 					}
 				}
 
-				auto rockettime = (local_player->EyePosition().DistTo(curpos) / speed);
+				auto rockettime = (local_player->Weapon_ShootPosition().DistTo(curpos) / speed);
 				if (fabs(rockettime - currenttime) < mindelta) {
 					besttime = currenttime; bestpos = curpos;
 					mindelta = fabs(rockettime - currenttime);
@@ -348,7 +348,7 @@ void CAimbot::Run(C_TFPlayer* pLocal, CUserCmd* pCommand)
 		return;
 	Vector vEntity = pEntity->As<C_TFPlayer*>()->GetHitboxPosition(iBestHitbox);
 
-	Vector vLocal = pLocal->EyePosition();
+	Vector vLocal = pLocal->Weapon_ShootPosition();
 
 	QAngle vAngs;
 
@@ -406,7 +406,7 @@ int CAimbot::GetBestTarget(C_TFPlayer* pLocal, CUserCmd* pCommand)
 	float flDistToBest = 99999.f;
 	double minimalDistance = 99999.0;
 
-	Vector vLocal = pLocal->EyePosition();
+	Vector vLocal = pLocal->Weapon_ShootPosition();
 
 	for (int i = 1; i <= I::EngineClient->GetMaxClients(); i++)
 	{
@@ -486,7 +486,7 @@ int CAimbot::GetBestTarget(C_TFPlayer* pLocal, CUserCmd* pCommand)
 		Vector bruh;
 		AngleVectors(pCommand->viewangles, &bruh);
 		float flFOV = GetFOV(bruh, vLocal, vEntity);
-		float distance = G::Util.flGetDistance(vEntity, pLocal->EyePosition());
+		float distance = G::Util.flGetDistance(vEntity, pLocal->Weapon_ShootPosition());
 
 		if (distance < minimalDistance)//gCvars.aimbot.fov)
 		{
@@ -534,7 +534,7 @@ int CAimbot::GetBestHitbox(C_TFPlayer* pLocal, C_TFPlayer* pEntity)
 	if (pEntity->GetHitboxPosition(iBestHitbox).IsZero())
 		return -1;
 
-	if (!G::Util.IsVisible2(pLocal, pEntity, pLocal->EyePosition(), pEntity->GetHitboxPosition(iBestHitbox)))
+	if (!G::Util.IsVisible2(pLocal, pEntity, pLocal->Weapon_ShootPosition(), pEntity->GetHitboxPosition(iBestHitbox)))
 		return -1;
 
 	return iBestHitbox;
