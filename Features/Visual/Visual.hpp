@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../SDK/SDK.h"
+#include "../Misc/Misc.h"
 
 class CFeatures_Visual
 {
@@ -12,6 +13,7 @@ public:
 	bool RemoveScope(int nPanel);
 	void Thirdperson(C_TFPlayer* pLocal);
 	void DoFov(CViewSetup* pViewSetup);
+	void DoSpectators();
 };
 
 namespace F { inline CFeatures_Visual Visual; }

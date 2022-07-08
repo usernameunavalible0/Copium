@@ -263,6 +263,7 @@ public:
 	typedef CHandle<C_BaseCombatCharacter> CBaseCombatCharacterHandle;
 
 public:
+	M_NETVAR(m_flLastFireTime, float, "CBaseCombatWeapon", "m_flLastFireTime");
 	M_NETVAR(m_flChargedDamage, float, "CTFSniperRifle", "m_flChargedDamage");
 	M_NETVAR(m_bReadyToBackstab, bool, "CTFKnife", "m_bReadyToBackstab");
 	M_NETVAR(m_iPrimaryAmmoType, int, "CBaseCombatWeapon", "m_iPrimaryAmmoType");

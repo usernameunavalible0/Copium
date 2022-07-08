@@ -36,7 +36,7 @@ bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInp
 			F::Prediction.Start(pLocal, cmd);
 			{
 				F::gAim.Run(pLocal, cmd);
-				//F::Triggerbot.Run(pLocal, cmd);
+				F::Triggerbot.Run(pLocal, cmd);
 			}
 			F::Prediction.Finish(pLocal);
 		}

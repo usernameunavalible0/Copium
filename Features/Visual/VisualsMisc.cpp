@@ -1,6 +1,20 @@
 #include "Visual.hpp"
 #include "../Vars.h"
 
+void CFeatures_Visual::DoSpectators()
+{
+	auto spectators = F::Misc.get_spectators();
+	int height;
+	int width;
+
+	if (spectators.size() > 0)
+		I::VGuiSurface->GetTextSize(G::Draw.m_Fonts.Find(EFonts::MENU_TAHOMA), spectators[0].c_str(), width, height);
+
+	//G::Draw.OutlinedRect(123, 123, width + 4, height + 4, { 0, 0, 0, 255 });
+	//G::Draw.Rect(200, 200, width + 2, height + 2, Vars::Menu::Colors::WindowBackground);
+	//G::Draw.String(EFonts::MENU_TAHOMA, 125, 125, Vars::Menu::Colors::Text, TXT_CENTERXY, L"stupid");
+}
+
 void CFeatures_Visual::Run(C_TFPlayer* pLocal, CViewSetup* pViewSetup)
 {
 

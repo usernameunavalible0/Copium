@@ -7,7 +7,7 @@
 
 bool CAimbot::CanAmbassadorHeadshot(C_TFPlayer* pLocal)
 {
-	return I::GlobalVars->curtime - pLocal->m_hActiveWeapon()->GetWeaponIdleTime() >= 0.930;//1.0;
+	return I::GlobalVars->curtime - pLocal->GetActiveTFWeapon()->m_flLastFireTime() >= 0.930;//1.0;
 }
 
 CAimbot gAim;
@@ -92,7 +92,7 @@ void CAimbot::Projectile(C_TFPlayer* local_player, C_TFPlayer* entity, C_BaseCom
 	};
 
 	auto distance_to_ground = [&entity]() -> float {
-		if (entity->GetEFlags() & FL_ONGROUND) return 0.0f;
+		if (entity->m_fFlags().IsFlagSet(FL_ONGROUND)) return 0.0f;
 		auto distance_to_ground = [&entity](Vector origin) -> float
 		{
 			trace_t ground_trace; Ray_t ray;
@@ -103,7 +103,7 @@ void CAimbot::Projectile(C_TFPlayer* local_player, C_TFPlayer* entity, C_BaseCom
 			endpos.z -= 8192;
 			ray.Init(origin, endpos);
 			I::EngineTrace->TraceRay(ray, MASK_PLAYERSOLID, &filter, &ground_trace);
-			return 8192.0f * ground_trace.fraction;
+			return (8192.0f * ground_trace.fraction);
 		};
 
 		Vector origin = entity->GetAbsOrigin();
@@ -114,7 +114,7 @@ void CAimbot::Projectile(C_TFPlayer* local_player, C_TFPlayer* entity, C_BaseCom
 		return min(v1, min(v2, min(v3, v4)));
 	};
 	if (IsProjectileWeapon(local_player, local_weapon)) {
-		bool on_ground = entity->GetEFlags() & FL_ONGROUND;
+		bool on_ground = entity->m_fFlags().IsFlagSet(FL_ONGROUND);
 		if (local_player->m_iClass() == TF_CLASS_MEDIC || local_player->m_iClass() == TF_CLASS_ENGINEER || local_player->m_iClass() == TF_CLASS_PYRO)
 			vec_hitbox = entity->GetHitboxPosition(HITBOX_BODY);
 		else if (local_player->m_iClass() == TF_CLASS_SOLDIER || local_player->m_iClass() == TF_CLASS_DEMOMAN) {
@@ -244,8 +244,8 @@ void CAimbot::Run(C_TFPlayer* pLocal, CUserCmd* pCommand)
 	if (!pLocal->IsAlive())
 		return;
 
-	//if (!pLocal->GetActiveWeapon()) // IS THIS EVEN NEEDED?
-		//return;
+	if (!pLocal->GetActiveTFWeapon()) // IS THIS EVEN NEEDED?
+		return;
 
 	auto id = pLocal->GetActiveWeapon()->m_iItemDefinitionIndex(); //This ignores all projectile weapons, doesn't work for strange/killstreak/etc
 	if (

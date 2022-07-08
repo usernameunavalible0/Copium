@@ -45,16 +45,16 @@ void CFeatures_Triggerbot::Triggerbot(C_TFPlayer* pLocal, CUserCmd* cmd)
 
 
 
-		if (Vars::Trigger::Hitbox == 0 ? true : trace.hitbox == HITBOX_HEAD) {
-			if (!(pLocal->m_iClass() == TF_CLASS_SPY))
-			{
-				cmd->buttons |= IN_ATTACK;
-			}
-
-			if ((pLocal->m_iClass() == TF_CLASS_SPY) && pWep->GetSlot() != 2)
-			{
-				cmd->buttons |= IN_ATTACK;
-			}
-		}
+		//if (Vars::Trigger::Hitbox == 0 ? true : trace.hitbox == HITBOX_HEAD) {
+		//	if (!(pLocal->m_iClass() == TF_CLASS_SPY))
+		//	{
+		//		cmd->buttons |= IN_ATTACK;
+		//	}
+//
+	//		if ((pLocal->m_iClass() == TF_CLASS_SPY) && pWep->GetSlot() != 2)
+		//	{
+			//	cmd->buttons |= IN_ATTACK;
+			//}
+		//}
 	}
 }
