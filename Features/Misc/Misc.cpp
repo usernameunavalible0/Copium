@@ -55,9 +55,9 @@ std::vector<std::wstring> CFeatures_Misc::get_spectators()
 					L"(fixed) " : mode == OBS_MODE_ROAMING ?
 					L"(roaming) " : L"";
 
-				wchar_t* thing = NULL;
-				mbstowcs(&thing[0], info.name, MAX_PLAYER_NAME_LENGTH);
-				list.push_back(std::wstring(type) + thing);
+				//wchar_t* thing = NULL;
+				//mbstowcs(&thing[0], info.name, MAX_PLAYER_NAME_LENGTH);
+				//list.push_back(std::wstring(type) + thing);
 
 			}
 		}

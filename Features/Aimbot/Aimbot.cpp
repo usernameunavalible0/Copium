@@ -458,7 +458,7 @@ int CAimbot::GetBestTarget(C_TFPlayer* pLocal, CUserCmd* pCommand)
 			if (pWep->GetSlot() == 2 && !urmomgay)
 				minimalDistance = 8.4;
 
-			if (pClass == pClass == Demoman_t_TheEyelander || pClass == Demoman_t_FestiveEyelander || pClass == Demoman_t_NessiesNineIron || pClass == Demoman_t_TheScotsmansSkullcutter || pClass == Demoman_t_HorselessHeadlessHorsemannsHeadtaker)
+			if (pClass == Demoman_t_TheEyelander || pClass == Demoman_t_FestiveEyelander || pClass == Demoman_t_NessiesNineIron || pClass == Demoman_t_TheScotsmansSkullcutter || pClass == Demoman_t_HorselessHeadlessHorsemannsHeadtaker)
 				minimalDistance = 12.0;
 
 			if (pLocal->m_iClass() == TF_CLASS_PYRO && (pClass == Pyro_m_TheBackburner || pClass == Pyro_m_TheDegreaser || pClass == Pyro_m_FestiveBackburner || pClass == Pyro_m_FestiveFlameThrower || pClass == Pyro_m_FlameThrower || pClass == Pyro_m_ThePhlogistinator || pClass == Pyro_m_TheRainblower))
