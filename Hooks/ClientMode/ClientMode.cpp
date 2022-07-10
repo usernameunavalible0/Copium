@@ -14,7 +14,7 @@ void __fastcall ClientMode::OverrideView::Detour(void* ecx, void* edx, CViewSetu
 {
 	Table.Original<FN>(Index)(ecx, edx, pSetup);
 
-	F::Visual.DoFov(pSetup);
+	//F::Visual.DoFov(pSetup);
 }
 
 bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInputSampleTime, CUserCmd* cmd)

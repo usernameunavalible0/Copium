@@ -165,8 +165,12 @@ public:
 	virtual void				Operator_HandleAnimEvent(void* pEvent, C_BaseCombatCharacter* pOperator) = 0; //animevent_t
 	virtual const char*			GetInventoryModel(void) = 0;
 	virtual float				GetSpeedMod(void) = 0;
-	virtual bool				CanFireCriticalShot(bool bIsHeadshot = false) = 0; //423
-	virtual bool				CanFireRandomCriticalShot(float flCritChance) = 0;
+	//__inline bool CanFireCriticalShot(const bool bHeadShot) {
+	//	return VFunc_Get<bool(__thiscall*)(decltype(this), bool, CBaseEntity*)>(this, 424)(this, bHeadShot, nullptr);
+	//}
+//	__inline bool CanFireRandomCriticalShot(const float flCritChance) {
+//		return VFunc_Get<bool(__thiscall*)(decltype(this), float)>(this, 423)(this, flCritChance);
+//	}
 	virtual void				OnControlStunned(void) = 0;
 	virtual bool				HideWhileStunned(void) = 0;
 	virtual bool				IsViewModelFlipped(void) = 0;
@@ -223,6 +227,7 @@ public:
 	bool CanFireCiriticalShotHelper(const bool bHeadShot = false);
 
 public:
+
 	inline bool CanHeadShot()
 	{
 		return ((GetDamageType() & DMG_USE_HITLOCATIONS) && CanFireCiriticalShotHelper(true));

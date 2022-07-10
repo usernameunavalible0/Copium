@@ -62,6 +62,7 @@ bool COffsets::Initialize()
 	CHECKPATT(m_dwShutdown);
 
 	m_dwSendNetMsg = g_Pattern.Find("engine.dll", "56 8B F1 8B 46 0C C7 06 ? ? ? ? 85 C0 74 12");
+	//m_dwSendNetMsg = g_Pattern.Find("engine.dll", "55 8B EC 57 8B F9 8D 8F ? ? ? ? E8 ? ? ? ? 85 C0 75 07 B0 01 5F 5D C2 0C 00");
 	CHECKPATT(m_dwSendNetMsg);
 
 	m_dwStartDrawing = g_Pattern.Find("vguimatsurface.dll", "55 8B EC 64 A1 ? ? ? ? 6A FF 68 ? ? ? ? 50 64 89 25 ? ? ? ? 83 EC 14");
