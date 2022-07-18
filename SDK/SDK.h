@@ -12,6 +12,8 @@ class CUtil
 public:
 	void FixMovement(const QAngle& va, CUserCmd* cmd);
 
+	Vector fix_movement(CUserCmd* cmd, CUserCmd original_command) const;
+
 	bool IsVisible(const Vector& vStart, const Vector& vEnd);
 
 	Color GetTeamColor(const int nTeam);

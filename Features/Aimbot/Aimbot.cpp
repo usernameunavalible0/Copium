@@ -360,36 +360,42 @@ void CAimbot::Run(C_TFPlayer* pLocal, CUserCmd* pCommand)
 	G::Util.ClampAngle(vAngs);
 
 	iAimbotIndex = pEntity->entindex();
-	if (Vars::Aimbot::Global::SmoothDuration > 0.0 && !Vars::Aimbot::Global::SilentAim.m_Var)
-	{
-		Vector bruh; // STUPID
-		Vector bruhthesecond;
-		AngleVectors(pCommand->viewangles, &bruh); // BULLSHIT
-		AngleVectors(vAngs, &bruhthesecond);
-		Vector vDelta(bruh - bruhthesecond);
-		G::Util.AngleNormalize(vDelta);
-		QAngle angMyAngle = QAngle(vDelta.x, vDelta.y, vDelta.z); // R U FUCKIN KIDDIN ME
-		vAngs = pCommand->viewangles - angMyAngle / Vars::Aimbot::Global::SmoothDuration;
-	}
+
 
 	if (Vars::Aimbot::Global::AutoShoot.m_Var)
 	{
 		pCommand->buttons |= IN_ATTACK;
 	}
 
-	if ((G::Util.CanShoot(pLocal) && (pCommand->buttons & IN_ATTACK)) || (Vars::Aimbot::Global::SmoothDuration > 0.0 && !Vars::Aimbot::Global::SilentAim.m_Var)) {
+	if (G::Util.CanShoot(pLocal) && (pCommand->buttons & IN_ATTACK)) {
 		//if (GAME_TF2)
 		//{
+
+		if (!Vars::Aimbot::Global::SilentAim.m_Var && Vars::Aimbot::Global::SmoothDuration <= 0.0)
+		{
 			pCommand->viewangles = vAngs;
-			if (!Vars::Aimbot::Global::SilentAim.m_Var)
-				I::EngineClient->SetViewAngles(pCommand->viewangles);
-			// g.silenttime = true;
-		//}
+			I::EngineClient->SetViewAngles(pCommand->viewangles);
+		}
+
+		if (Vars::Aimbot::Global::SmoothDuration > 0.0 && !Vars::Aimbot::Global::SilentAim.m_Var)
+		{
+			QAngle vecDelta = vAngs - pCommand->viewangles;
+			G::Util.ClampAngle(vecDelta);
+			pCommand->viewangles += vecDelta / Vars::Aimbot::Global::SmoothDuration;
+			I::EngineClient->SetViewAngles(pCommand->viewangles);
+		}
+
+		if (Vars::Aimbot::Global::SilentAim.m_Var && Vars::Aimbot::Global::SmoothDuration <= 0.0)
+		{
+			G::Util.FixMovement(vAngs, pCommand);
+			pCommand->viewangles = vAngs;
+		}
+
 	}
 
-	Vector n_QOldViewAngle;
-	AngleVectors(m_vOldViewAngle, &n_QOldViewAngle); // LAST TIME IM DOIN THIS SHIT
-	FixMove(pCommand, n_QOldViewAngle, m_fOldForwardMove, m_fOldSideMove);
+	//Vector n_QOldViewAngle;
+	//AngleVectors(m_vOldViewAngle, &n_QOldViewAngle); // LAST TIME IM DOIN THIS SHIT
+	//FixMove(pCommand, n_QOldViewAngle, m_fOldForwardMove, m_fOldSideMove);
 }
 
 //---------------------------------------//
@@ -397,6 +403,7 @@ void CAimbot::Run(C_TFPlayer* pLocal, CUserCmd* pCommand)
 //				    Bruh				 //
 //										 //
 //---------------------------------------//
+
 
 int CAimbot::GetBestTarget(C_TFPlayer* pLocal, CUserCmd* pCommand)
 {

@@ -50,7 +50,7 @@ private:
 
 	bool CanAmbassadorHeadshot(C_TFPlayer* pLocal);
 
-
+	void fix_movement(CUserCmd* pCmd, const Vector& vecTargetAngle);
 };
 
 namespace F { inline CAimbot gAim; } //dsajkhfdlksahf

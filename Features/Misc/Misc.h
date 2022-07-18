@@ -15,8 +15,6 @@ private:
 	void AntiWarp(C_TFPlayer* pLocal, CUserCmd* cmd);
 	void DoStrafe(C_TFPlayer* pLocal, CUserCmd* cmd);
 	void DoEdgeJump(C_TFPlayer* pLocal, CUserCmd* cmd);
-public:
-	std::vector<std::wstring> get_spectators();
 };
 
 namespace F { inline CFeatures_Misc Misc; }

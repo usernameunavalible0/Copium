@@ -22,6 +22,10 @@ bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInp
 	if (!cmd || cmd->command_number <= 0)
 		return Table.Original<FN>(Index)(ecx, edx, flInputSampleTime, cmd);
 
+	QAngle va;
+	if (Vars::Aimbot::Global::SilentAim.m_Var)
+		I::EngineClient->GetViewAngles(va);
+
 	uintptr_t _bp; __asm mov _bp, ebp;
 	bool* pbSendPacket = (bool*)(***(uintptr_t***)_bp - 0x1);
 
@@ -44,6 +48,10 @@ bool __fastcall ClientMode::CreateMove::Detour(void* ecx, void* edx, float flInp
 		F::Misc.Run(pLocal, cmd);
 		
 	}
+
+	if (Vars::Aimbot::Global::SilentAim.m_Var)
+		I::EngineClient->SetViewAngles(va);
+
 
 	return false;
 }

@@ -32,7 +32,7 @@ namespace Vars
 
 		namespace Global
 		{
-			inline CVar<bool> SilentAim{ false, "Enable Silent Aimbot" };
+			inline CVar<bool> SilentAim{ true, "Enable Silent Aimbot" };
 			inline CVar<bool> IgnoreDisguised{ false, "Ignore Disguised" };
 			inline CVar<bool> Enabled{ true, "Enabled" };
 			inline CVar<int> AimKey{ VK_SHIFT, "Aim Key" };
@@ -59,7 +59,6 @@ namespace Vars
 			inline bool RangeCheck = true;
 
 			inline float SmoothDuration = 0.0f;
-			inline float SmoothSimple = 5.0f;
 
 			inline float DrawAimFov = 0.1f;
 

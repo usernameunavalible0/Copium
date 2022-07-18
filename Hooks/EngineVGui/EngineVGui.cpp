@@ -21,7 +21,7 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 
 		pfStartDrawing(I::MatSystemSurface);
 		{
-			//F::Visual.DoSpectators();
+			F::Visual.DoSpectators();
 			gMenu.Run();
 
 			if (g_Globals.m_bIsInGame && !g_Globals.m_bIsGameUIVisible)
