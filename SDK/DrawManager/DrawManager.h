@@ -21,6 +21,23 @@ enum class EFonts
 	FONT_LAST
 };
 
+struct screen_t {
+public:
+	screen_t() {
+		x = 0;
+		y = 0;
+	}
+
+	screen_t(const int _x, const int _y) {
+		x = _x;
+		y = _y;
+	}
+
+public:
+	int x;
+	int y;
+};
+
 class CDraw
 {
 private:

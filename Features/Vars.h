@@ -3,11 +3,54 @@
 #include "../SDK/SDK.h"
 
 template <class T>
-class CVar
-{
+
+class CVar {
 public:
-	T m_Var;
-	const std::string& m_szDisplayName;
+	CVar(const T v, const char* const name) {
+		m_Var = v;
+		m_name = name;
+	}
+
+	CVar(const T v, const T step, const T min, const T max, const char* const name) {
+		m_Var = v;
+		m_step = step;
+		m_min = min;
+		m_max = max;
+		m_name = name;
+	}
+
+public:
+	__inline T get() const {
+		return m_Var;
+	}
+
+	__inline void set(const T v) {
+		m_Var = v;
+	}
+
+	__inline const char* get_name() const {
+		return m_name;
+	}
+
+	__inline T get_step() const {
+		return m_step;
+	}
+
+	__inline T get_min() const {
+		return m_min;
+	}
+
+	__inline T get_max() const {
+		return m_max;
+	}
+
+public:
+	T m_Var = { };
+	T m_min = { };
+	T m_max = { };
+	T m_step = { };
+
+	const char* m_name = "";
 };
 
 namespace Vars
@@ -19,13 +62,13 @@ namespace Vars
 		namespace Hitscan
 		{
 			inline CVar<bool> ZoomedOnly{ false, "Zoomed Only" };
-			inline int SortMethod = 0; // 0 fov, 1 distance
+			inline int SortMethod = 1; // 0 fov, 1 distance
 			inline CVar<float> AimFOV{ 180.0f, "Aim FOV" };
 			inline CVar<bool> ScanHitboxes{ true, "Scan Body" };
 			inline CVar<bool> ScanHead{ true, "Scan Head" };
 			inline CVar<bool> ScanBuildings{ true, "Scan Buildings" };
-			inline CVar<bool> SpectatedSmooth{ true, "Spectate Smooth" };
-			inline CVar<int> SmoothingAmount { 2, "Smoothing Amount" };
+			inline CVar<bool> SpectatedSmooth={ true, "Spectate Smooth" };
+			inline CVar<int> SmoothingAmount={ 2, "Smoothing Amount" };
 			inline CVar<bool> WaitForCharge{ true, "Wait for charge" };
 			inline CVar<bool> WaitForHeadshot{ false, "Wait for headshot" };
 		}
@@ -46,14 +89,14 @@ namespace Vars
 			inline CVar<bool> AimDispencer{ false, "Aim Dispencer" };
 			inline CVar<bool> AimTele{ false, "Aim Teleporter" };
 
-			inline bool IgnoreCloaked = false;
+			inline bool IgnoreCloaked = true;
 			inline bool IgnoreFriends = false;
 			inline bool IgnoreInvunirible = true;
 			inline bool IgnoreTaunting = false;
 			inline int AimHitbox = 0; // 0 auto, 1 head, 2 body
 			inline bool bAimLethal = false;
 
-			inline int SortMethod = 2; // 0 fov, 1 dist, 2 auto
+			inline int SortMethod = 1; // 0 fov, 1 dist, 2 auto
 			inline bool NoMelee = false;
 			inline bool PredictSwing = true;
 			inline bool RangeCheck = true;
@@ -67,7 +110,7 @@ namespace Vars
 
 	namespace ESP
 	{
-		inline bool Enabled = true;
+		inline CVar<bool> Enabled{ true, "ESP" };
 
 		namespace Players
 		{

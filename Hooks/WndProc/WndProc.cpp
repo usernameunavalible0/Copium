@@ -7,9 +7,9 @@ using namespace Hooks;
 LRESULT CALLBACK WndProc::Detour(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	
-	return (gMenu.m_Open && (I::EngineVGui->IsGameUIVisible() || I::EngineClient->Con_IsVisible())) ? 1 : CallWindowProcW(oWndProc, hwnd, uMsg, wParam, lParam);
+	//return (gMenu.m_Open && (I::EngineVGui->IsGameUIVisible() || I::EngineClient->Con_IsVisible())) ? 1 : CallWindowProcW(oWndProc, hwnd, uMsg, wParam, lParam);
 
-	//return CallWindowProcW(oWndProc, hwnd, uMsg, wParam, lParam);
+	return (F::Menu.is_open() && (I::EngineVGui->IsGameUIVisible() || !I::EngineClient->Con_IsVisible())) ? 1ul : CallWindowProc(oWndProc, hwnd, uMsg, wParam, lParam);
 }
 
 void WndProc::Initialize()

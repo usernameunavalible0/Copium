@@ -9,11 +9,10 @@ namespace Hooks
 
 		namespace LockCursor
 		{
+			using FN = void(__fastcall*)(void*, void*);
+			constexpr uint32 Index = 65u;
 
-			using FN = void(__fastcall*)(vgui::ISurface*);
-			constexpr uint32 Index = 62u;
-
-			void __fastcall Detour();
+			void __fastcall Detour(void* ecx, void* edx);
 		}
 
 		void Initialize();

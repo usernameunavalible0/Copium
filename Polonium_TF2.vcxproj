@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -167,6 +167,9 @@
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\AutoHeal\AutoHeal.cpp" />
     <ClCompile Include="Features\ESP\ESP.cpp" />
+    <ClCompile Include="Features\Menu\Input\Input.cpp" />
+    <ClCompile Include="Features\Menu\Menu.cpp" />
+    <ClCompile Include="Features\Menu\MenuItem\MenuItem.cpp" />
     <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="Features\Prediction\Prediction.cpp" />
     <ClCompile Include="Features\Triggerbot\triggerbot.cpp" />
@@ -184,17 +187,15 @@
     <ClCompile Include="Hooks\EngineVGui\EngineVGui.cpp" />
     <ClCompile Include="Hooks\Hooks.cpp" />
     <ClCompile Include="Hooks\Input\HInput.cpp" />
+    <ClCompile Include="Hooks\LockCursor\LockCursor.cpp" />
     <ClCompile Include="Hooks\ModelRender\ModelRender.cpp" />
     <ClCompile Include="Hooks\NetChannel\NetChannel.cpp" />
     <ClCompile Include="Hooks\SequenceTransitioner\SequenceTransitioner.cpp" />
-    <ClCompile Include="Hooks\SurfaceHook\SurfaceHook.cpp" />
     <ClCompile Include="Hooks\TFPlayer\TFPlayer.cpp" />
     <ClCompile Include="Hooks\TFWeaponBase\TFWeaponBase.cpp" />
     <ClCompile Include="Hooks\VGuiPanel\VGuiPanel.cpp" />
     <ClCompile Include="Hooks\ViewRender\ViewRender.cpp" />
     <ClCompile Include="Hooks\WndProc\WndProc.cpp" />
-    <ClCompile Include="Features\Menu\Input\Input.cpp" />
-    <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="SDK\ConVars\ConVars.cpp" />
     <ClCompile Include="SDK\hl2_src\common\netmessages.cpp" />
     <ClCompile Include="SDK\hl2_src\game\client\cdll_util.cpp" />
@@ -305,6 +306,9 @@
     <ClInclude Include="Features\AutoHeal\AutoHeal.h" />
     <ClInclude Include="Features\Bruh\Extern.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
+    <ClInclude Include="Features\Menu\Input\Input.h" />
+    <ClInclude Include="Features\Menu\Menu.h" />
+    <ClInclude Include="Features\Menu\MenuItem\MenuItem.h" />
     <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\NoSpread\NoSpread.h" />
     <ClInclude Include="Features\Prediction\Prediction.h" />
@@ -322,17 +326,15 @@
     <ClInclude Include="Hooks\EngineVGui\EngineVGui.h" />
     <ClInclude Include="Hooks\Hooks.h" />
     <ClInclude Include="Hooks\Input\HInput.h" />
+    <ClInclude Include="Hooks\LockCursor\LockCursor.h" />
     <ClInclude Include="Hooks\ModelRender\ModelRender.h" />
     <ClInclude Include="Hooks\NetChannel\NetChannel.h" />
     <ClInclude Include="Hooks\SequenceTransitioner\SequenceTransitioner.h" />
-    <ClInclude Include="Hooks\SurfaceHook\SurfaceHook.h" />
     <ClInclude Include="Hooks\TFPlayer\TFPlayer.h" />
     <ClInclude Include="Hooks\TFWeaponBase\TFWeaponBase.h" />
     <ClInclude Include="Hooks\VGuiPanel\VGuiPanel.h" />
     <ClInclude Include="Hooks\ViewRender\ViewRender.h" />
     <ClInclude Include="Hooks\WndProc\WndProc.h" />
-    <ClInclude Include="Features\Menu\Input\Input.h" />
-    <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="SDK\ConVars\ConVars.h" />
     <ClInclude Include="SDK\Globals\Globals.h" />
     <ClInclude Include="SDK\hl2_src\common\netmessages.h" />

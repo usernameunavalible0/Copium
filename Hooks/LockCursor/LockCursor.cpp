@@ -1,12 +1,14 @@
-#include "SurfaceHook.h"
-
+#include "LockCursor.h"
 #include "../../Features/Menu/Menu.h"
 
 using namespace Hooks;
 
-void __fastcall VGuiSurface::LockCursor::Detour()
+void __fastcall VGuiSurface::LockCursor::Detour(void* ecx, void* edx)
 {
-	gMenu.m_Open ? I::VGuiSurface->UnlockCursor() : Table.Original<FN>(Index)(I::VGuiSurface);
+	if (F::Menu.is_open())
+		I::VGuiSurface->UnlockCursor();
+	else
+		Table.Original<FN>(Index)(ecx, edx);
 }
 
 void VGuiSurface::Initialize()

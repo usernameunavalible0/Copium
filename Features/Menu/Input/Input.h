@@ -1,31 +1,31 @@
 #pragma once
-#include "../../../SDK/SDK.h"
 
-enum struct EKeyState {
-	NONE,
-	PRESSED,
-	HELD
-};
+#include "../../../SDK/DrawManager/DrawManager.h"
 
-enum struct EScrollWheelState {
-	NONE,
-	UP,
-	DOWN
-};
-
-class C_Input
-{
+class c_input {
 public:
-	std::map<int, EKeyState> m_Keyboard = {};
-	EKeyState m_RMouse = {};
-	EKeyState m_LMouse = {};
-	EKeyState m_MMouse = {};
-	EScrollWheelState m_Wheel = {};
+	void think();
 
-	void Update();
+public:
+	bool is_pressed(const int vk) const;
+	bool is_held(const int vk) const;
+	bool is_any_key_pressed(int& vk);
 
-	EKeyState GetKey(int key);
-	EKeyState GetMouse(int key);
+	int cursor_x() const;
+	int cursor_y() const;
+
+private:
+	enum {
+		keystate_pressed = 0,
+		keystate_held,
+		keystate_max
+	};
+
+private:
+	bool m_keystates[256][keystate_max] = { };
+
+	int m_cursor_x = 0;
+	int m_cursor_y = 0;
 };
 
-extern C_Input gInput;
+inline c_input gInput;

@@ -4,6 +4,8 @@
 
 namespace Hooks
 {
+	inline Hook::CTable Table;
+
 	namespace WndProc
 	{
 		inline WNDPROC oWndProc = nullptr;

@@ -13,7 +13,7 @@ bool Hooks::Initialize()
 	ClientMode::Initialize();
 	ClientPrediction::Initialize();
 	EngineClient::Initialize();
-	//VGuiSurface::Initialize();
+	VGuiSurface::Initialize();
 	EngineVGui::Initialize();
 	Input::Initialize();
 	ModelRender::Initialize();

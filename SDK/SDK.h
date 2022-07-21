@@ -12,8 +12,6 @@ class CUtil
 public:
 	void FixMovement(const QAngle& va, CUserCmd* cmd);
 
-	Vector fix_movement(CUserCmd* cmd, CUserCmd original_command) const;
-
 	bool IsVisible(const Vector& vStart, const Vector& vEnd);
 
 	Color GetTeamColor(const int nTeam);
@@ -61,6 +59,47 @@ public:
 
 
 	Vector CalcAngleProjectile(const Vector& source, const Vector& destination);
+
+	static std::wstring util_get_vkey_name(const int v_key) {
+		switch (v_key) {
+		case 0: return L"none";
+		case 1: return L"left mouse";
+		case 2: return L"right mouse";
+		case 3: return L"cancel";
+		case 4: return L"middle mouse";
+		case 5: return L"xbutton 1";
+		case 6: return L"xbutton 2";
+		case 46: return L"delete";
+		default: break;
+		}
+
+		wchar_t wbuff[16] = { L"\0" };
+
+		if (GetKeyNameTextW(MapVirtualKeyW(v_key, 0) << 16, wbuff, 16)) {
+			std::wstring key_name = wbuff;
+
+			std::transform(key_name.begin(), key_name.end(), key_name.begin(),
+				[](wchar_t c) { return ::towlower(c); });
+
+			return key_name;
+		}
+
+		return L"unknown key";
+	}
+
+	std::wstring ConvertUtf8ToWide(const std::string_view& str)
+	{
+		int count = MultiByteToWideChar(CP_UTF8, 0, str.data(), str.length(), NULL, 0);
+		std::wstring wstr(count, 0);
+		MultiByteToWideChar(CP_UTF8, 0, str.data(), str.length(), &wstr[0], count);
+		return wstr;
+	}
+public:
+	template<typename T>
+	inline T clamp(const T val, const T min, const T max) {
+		const T ret = (val < min) ? min : val;
+		return (ret > max) ? max : ret;
+	}
 };
 
 struct Priority {

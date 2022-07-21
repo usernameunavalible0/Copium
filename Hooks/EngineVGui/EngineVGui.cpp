@@ -17,12 +17,12 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 
 	if (mode & PaintMode_t::PAINT_UIPANELS)
 	{
+		gInput.think();
 		G::Draw.ReloadMatrix();
 
 		pfStartDrawing(I::MatSystemSurface);
 		{
-			F::Visual.DoSpectators();
-			gMenu.Run();
+			F::Menu.think();
 
 			if (g_Globals.m_bIsInGame && !g_Globals.m_bIsGameUIVisible)
 			{
