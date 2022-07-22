@@ -20,27 +20,27 @@ public:
 	}
 
 public:
-	__inline T get() const {
+	__inline T Get() const {
 		return m_Var;
 	}
 
-	__inline void set(const T v) {
+	__inline void Set(const T v) {
 		m_Var = v;
 	}
 
-	__inline const char* get_name() const {
+	__inline const char* GetName() const {
 		return m_name;
 	}
 
-	__inline T get_step() const {
+	__inline T GetStep() const {
 		return m_step;
 	}
 
-	__inline T get_min() const {
+	__inline T GetMin() const {
 		return m_min;
 	}
 
-	__inline T get_max() const {
+	__inline T GetMax() const {
 		return m_max;
 	}
 

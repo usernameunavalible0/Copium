@@ -1,42 +1,37 @@
-#include "input.h"
+#include "Input.h"
 
-void c_input::think() {
-	I::VGuiSurface->SurfaceGetCursorPos(m_cursor_x, m_cursor_y);
-
-	for (int n = 1; n < 256; n++) {
-		const short k = GetAsyncKeyState(n);
-
-		m_keystates[n][keystate_pressed] = (k & 0x0001);
-		m_keystates[n][keystate_held] = (k);
-	}
-}
-
-bool c_input::is_pressed(const int vk) const {
-	return m_keystates[vk][keystate_pressed];
-}
-
-bool c_input::is_held(const int vk) const {
-	return m_keystates[vk][keystate_held];
-}
-
-bool c_input::is_any_key_pressed(int& vk) {
-	vk = 0;
-
-	for (int n = 1; n < 256; n++) {
-		if (is_pressed(n)) {
-			vk = n;
-			return true;
-		}
+void C_Input::Update()
+{
+	for (auto& Key : gInput.m_Keyboard) {
+		if (Key.second != EKeyState::NONE)
+			Key.second = EKeyState::HELD;
 	}
 
-	return (vk != 0);
+	if (gInput.m_RMouse != EKeyState::NONE)
+		gInput.m_RMouse = EKeyState::HELD;
+
+	if (gInput.m_LMouse != EKeyState::NONE)
+		gInput.m_LMouse = EKeyState::HELD;
+
+	if (gInput.m_MMouse != EKeyState::NONE)
+		gInput.m_MMouse = EKeyState::HELD;
 }
 
-int c_input::cursor_x() const {
-	return m_cursor_x;
+EKeyState C_Input::GetKey(int key)
+{
+	return m_Keyboard[key];
 }
 
-int c_input::cursor_y() const {
-	return m_cursor_y;
+EKeyState C_Input::GetMouse(int key)
+{
+	switch (key)
+	{
+	case VK_RBUTTON: { return m_RMouse; }
+	case VK_LBUTTON: { return m_LMouse; }
+	case VK_MBUTTON: { return m_MMouse; }
+	}
+
+	return {};
 }
 
+C_Input gInput;

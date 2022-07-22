@@ -169,7 +169,6 @@
     <ClCompile Include="Features\ESP\ESP.cpp" />
     <ClCompile Include="Features\Menu\Input\Input.cpp" />
     <ClCompile Include="Features\Menu\Menu.cpp" />
-    <ClCompile Include="Features\Menu\MenuItem\MenuItem.cpp" />
     <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="Features\Prediction\Prediction.cpp" />
     <ClCompile Include="Features\Triggerbot\triggerbot.cpp" />
@@ -308,7 +307,6 @@
     <ClInclude Include="Features\ESP\ESP.h" />
     <ClInclude Include="Features\Menu\Input\Input.h" />
     <ClInclude Include="Features\Menu\Menu.h" />
-    <ClInclude Include="Features\Menu\MenuItem\MenuItem.h" />
     <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\NoSpread\NoSpread.h" />
     <ClInclude Include="Features\Prediction\Prediction.h" />
