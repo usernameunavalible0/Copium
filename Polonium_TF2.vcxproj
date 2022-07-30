@@ -167,8 +167,6 @@
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\AutoHeal\AutoHeal.cpp" />
     <ClCompile Include="Features\ESP\ESP.cpp" />
-    <ClCompile Include="Features\Menu\Input\Input.cpp" />
-    <ClCompile Include="Features\Menu\Menu.cpp" />
     <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="Features\Prediction\Prediction.cpp" />
     <ClCompile Include="Features\Triggerbot\triggerbot.cpp" />
@@ -305,8 +303,6 @@
     <ClInclude Include="Features\AutoHeal\AutoHeal.h" />
     <ClInclude Include="Features\Bruh\Extern.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
-    <ClInclude Include="Features\Menu\Input\Input.h" />
-    <ClInclude Include="Features\Menu\Menu.h" />
     <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\NoSpread\NoSpread.h" />
     <ClInclude Include="Features\Prediction\Prediction.h" />

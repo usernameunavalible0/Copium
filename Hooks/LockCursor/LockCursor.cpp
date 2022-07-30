@@ -1,14 +1,10 @@
 #include "LockCursor.h"
-#include "../../Features/Menu/Menu.h"
 
 using namespace Hooks;
 
-void __fastcall VGuiSurface::LockCursor::Detour(void* ecx, void* edx)
+void __fastcall VGuiSurface::LockCursor::Detour()
 {
-	if (gMenu.m_Open)
-		I::VGuiSurface->UnlockCursor();
-	else
-		Table.Original<FN>(Index)(ecx, edx);
+	Table.Original<FN>(Index)();
 }
 
 void __fastcall VGuiSurface::OnScreenSizeChanged::Detour(int oldWidth, int oldHeight)

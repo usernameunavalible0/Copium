@@ -2,7 +2,6 @@
 
 #include "../../Features/ESP/ESP.h"
 #include "../../Features/Visual/Visual.hpp"
-#include "../../Features/Menu/Menu.h"
 
 using namespace Hooks;
 
@@ -21,8 +20,6 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 
 		pfStartDrawing(I::MatSystemSurface);
 		{
-			gMenu.Run();
-
 			if (g_Globals.m_bIsInGame && !g_Globals.m_bIsGameUIVisible)
 			{
 				C_TFPlayer* pLocal = UTIL_TFPlayerByIndex(g_Globals.m_nLocalIndex);
