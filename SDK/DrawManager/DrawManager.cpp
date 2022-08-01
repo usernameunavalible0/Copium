@@ -1,4 +1,25 @@
 #include "DrawManager.h"
+#include "../Includes/Icons.h"
+
+void CDraw::Texture(int x, int y, int w, int h, const Color& clr, int nIndex)
+{
+	static int nTexture = 0;
+
+	if (ICONS::ID[nIndex] != ICONS::UNDEFINED)
+	{
+		nTexture = ICONS::ID[nIndex];
+	}
+	else
+	{
+		nTexture = I::VGuiSurface->CreateNewTextureID();
+		I::VGuiSurface->DrawSetTextureFile(nTexture, ICONS::TEXTURE[nIndex].c_str(), false, true);
+		ICONS::ID[nIndex] = nTexture;
+	}
+
+	I::VGuiSurface->DrawSetColor(clr.r(), clr.g(), clr.b(), clr.a());
+	I::VGuiSurface->DrawSetTexture(nTexture);
+	I::VGuiSurface->DrawTexturedRect(x, y, w, h);
+}
 
 bool CDraw::Initialize()
 {

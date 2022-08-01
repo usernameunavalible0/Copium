@@ -9,7 +9,10 @@ void CFeatures_Misc::Run(C_TFPlayer* pLocal, CUserCmd* cmd)
 
 	if (bAutostrafe)
 		DoStrafe(pLocal, cmd);
+
 }
+
+
 
 void CFeatures_Misc::Bunnyhop(C_TFPlayer* pLocal, CUserCmd* cmd)
 {

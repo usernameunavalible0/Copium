@@ -2,6 +2,9 @@
 
 #include "../../Features/ESP/ESP.h"
 #include "../../Features/Visual/Visual.hpp"
+#include "../../Features/Misc/Misc.h"
+#include "../../Features/Vars.h"
+#include "../../SDK/Includes/Icons.h"
 
 using namespace Hooks;
 
@@ -18,6 +21,7 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 	{
 		G::Draw.ReloadMatrix();
 
+
 		pfStartDrawing(I::MatSystemSurface);
 		{
 			if (g_Globals.m_bIsInGame && !g_Globals.m_bIsGameUIVisible)
@@ -29,6 +33,8 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 				{
 					// Old Menu F::menu.draw_fps();
 					F::ESP.Render(pLocal);
+
+					F::Misc.WarningRun(pLocal);
 				}
 
 			}

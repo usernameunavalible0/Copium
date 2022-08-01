@@ -70,7 +70,7 @@ namespace Vars
 			inline CVar<bool> SpectatedSmooth={ true, "Spectate Smooth" };
 			inline CVar<int> SmoothingAmount={ 2, "Smoothing Amount" };
 			inline CVar<bool> WaitForCharge{ true, "Wait for charge" };
-			inline CVar<bool> WaitForHeadshot{ false, "Wait for headshot" };
+			inline CVar<bool> WaitForHeadshot{ true, "Wait for headshot" };
 		}
 
 		namespace Global
@@ -93,7 +93,7 @@ namespace Vars
 			inline bool IgnoreFriends = false;
 			inline bool IgnoreInvunirible = true;
 			inline bool IgnoreTaunting = false;
-			inline int AimHitbox = 0; // 0 auto, 1 head, 2 body
+			inline int AimHitbox = 1; // 0 auto, 1 head, 2 body
 			inline bool bAimLethal = false;
 
 			inline int SortMethod = 1; // 0 fov, 1 dist, 2 auto
@@ -120,7 +120,7 @@ namespace Vars
 			inline bool ActiveWeapon = true;
 			inline bool HealthText = true;
 			inline bool Name = true;
-			inline bool Box = true;
+			inline bool Box = false;
 			inline Color BoxColor = { 50, 100, 255, 255 };
 			inline bool Outline = true;
 			inline Color OutlineColor = { 242, 194, 0, 255 };
@@ -147,6 +147,9 @@ namespace Vars
 		inline int CustomFOV = 110;
 		inline bool ChangeFov = true;
 		inline CVar<bool> RemoveScope { true, "RemoveScope" };
+		inline CVar<bool> SpyWarningVisibleOnly{ false, "Spy Warning visual only?" };
+		inline CVar<int> SpyWarningStyle{ 1, "Spy warning style" };
+
 	}
 
 	namespace Menu
@@ -154,6 +157,7 @@ namespace Vars
 		inline CVar<bool> ToolTips{ false, "ToolTips" };
 		inline Rect_t Position = { 100, 100, 800, 420 };
 		inline int TitleBarH = 16;
+		inline bool Enabled = true;
 
 		inline int SpacingX = 8;
 		inline int SpacingY = 4;
@@ -202,5 +206,7 @@ namespace Vars
 		inline CVar<bool> Bunnyhop{ true, "Bunnyhop" };
 		inline CVar<bool> AutoStrafe{ true, "Autostrafe" };
 		inline CVar<bool> BypassPure{ true, "Bypass Pure" };
+		inline CVar<bool> AutoDisguise{ true, "Auto Disguise" };
+		inline CVar<bool> SpyWarning{ true, "Spy Warning" };
 	}
 }
