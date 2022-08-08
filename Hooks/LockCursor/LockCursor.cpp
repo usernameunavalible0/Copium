@@ -4,7 +4,7 @@ using namespace Hooks;
 
 void __fastcall VGuiSurface::OnScreenSizeChanged::Detour(void* ecx, void* edx, int oldWidth, int oldHeight)
 {
-	Table.Original<FN>(Index)(oldWidth, oldHeight);
+	Table.Original<FN>(Index)(ecx, edx, oldWidth, oldHeight);
 }
 
 void VGuiSurface::Initialize()

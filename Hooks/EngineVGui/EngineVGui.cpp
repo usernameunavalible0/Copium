@@ -5,6 +5,7 @@
 #include "../../Features/Misc/Misc.h"
 #include "../../Features/Vars.h"
 #include "../../SDK/Includes/Icons.h"
+#include "../../Features/Menu/Menu.h"
 
 using namespace Hooks;
 
@@ -40,6 +41,8 @@ void __fastcall EngineVGui::Paint::Detour(void* ecx, void* edx, int mode)
 			}
 
 			G::Draw.String(EFonts::DEBUG, 5, 5, { 204, 204, 204, 255 }, TXT_DEFAULT, L"Copium TF2 By DepressedPotato");
+
+			gMenu.Run();
 		}
 		pfFinishDrawing(I::MatSystemSurface);
 	}

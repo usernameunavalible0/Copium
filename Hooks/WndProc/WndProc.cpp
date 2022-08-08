@@ -1,11 +1,75 @@
 #include "WndProc.h"
+#include "../../Features/Menu/Input/Input.h"
+#include "../../Features/Menu/Menu.h"
 
 using namespace Hooks;
 
 LRESULT CALLBACK WndProc::Detour(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	
-	return CallWindowProc(oWndProc, hwnd, uMsg, wParam, lParam);
+	switch (uMsg)
+	{
+	case WM_KEYDOWN: {
+		gInput.m_Keyboard[wParam] = EKeyState::PRESSED;
+		break;
+	}
+
+	case WM_KEYUP: {
+		gInput.m_Keyboard[wParam] = EKeyState::NONE;
+		break;
+	}
+
+	case WM_RBUTTONDOWN:
+	{
+		if (wParam & MK_RBUTTON)
+			gInput.m_RMouse = EKeyState::PRESSED;
+
+		break;
+	}
+
+	case WM_LBUTTONDOWN:
+	{
+		if (wParam & MK_LBUTTON)
+			gInput.m_LMouse = EKeyState::PRESSED;
+
+		break;
+	}
+
+	case WM_MBUTTONDOWN:
+	{
+		if (wParam & MK_MBUTTON)
+			gInput.m_MMouse = EKeyState::PRESSED;
+
+		break;
+	}
+
+	case WM_RBUTTONUP:
+	{
+		gInput.m_RMouse = EKeyState::NONE;
+		break;
+	}
+
+	case WM_LBUTTONUP:
+	{
+		gInput.m_LMouse = EKeyState::NONE;
+		break;
+	}
+
+	case WM_MBUTTONUP:
+	{
+		gInput.m_MMouse = EKeyState::NONE;
+		break;
+	}
+
+	case WM_MOUSEWHEEL: {
+		gInput.m_Wheel = ((int)wParam < 0 ? EScrollWheelState::UP : EScrollWheelState::DOWN);
+		break;
+	}
+	}
+
+	if (gMenu.m_Open && (I::EngineClient->Con_IsVisible() || I::EngineVGui->IsGameUIVisible()))
+		return 1;
+
+	return CallWindowProcW(oWndProc, hwnd, uMsg, wParam, lParam);
 }
 
 void WndProc::Initialize()

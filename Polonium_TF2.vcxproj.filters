@@ -135,15 +135,9 @@
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\AutoHeal\AutoHeal.cpp" />
     <ClCompile Include="Hooks\LockCursor\LockCursor.cpp" />
-    <ClCompile Include="Features\Menu\Menu.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui_demo.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui_draw.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui_impl_dx9.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui_tables.cpp" />
-    <ClCompile Include="Features\Menu\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Features\Misc\SpyWarning.cpp" />
+    <ClCompile Include="Features\Menu\Menu.cpp" />
+    <ClCompile Include="Features\Menu\Input\Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entry\Entry.h" />
@@ -540,16 +534,9 @@
     <ClInclude Include="Features\AutoHeal\AutoHeal.h" />
     <ClInclude Include="Features\NoSpread\NoSpread.h" />
     <ClInclude Include="Hooks\LockCursor\LockCursor.h" />
-    <ClInclude Include="Features\Menu\Menu.h" />
-    <ClInclude Include="Features\Menu\imgui\imconfig.h" />
-    <ClInclude Include="Features\Menu\imgui\imgui.h" />
-    <ClInclude Include="Features\Menu\imgui\imgui_impl_dx9.h" />
-    <ClInclude Include="Features\Menu\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="Features\Menu\imgui\imgui_internal.h" />
-    <ClInclude Include="Features\Menu\imgui\imstb_rectpack.h" />
-    <ClInclude Include="Features\Menu\imgui\imstb_textedit.h" />
-    <ClInclude Include="Features\Menu\imgui\imstb_truetype.h" />
     <ClInclude Include="SDK\Includes\Icons.h" />
+    <ClInclude Include="Features\Menu\Menu.h" />
+    <ClInclude Include="Features\Menu\Input\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SDK\hl2_src\game\server\base.txt" />
