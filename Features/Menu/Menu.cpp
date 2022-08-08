@@ -1,8 +1,8 @@
 #include "Menu.h"
 #include "../Vars.h"
 
-#define FONT_MENU_NAME EFonts::MENU_VERDANA
-#define FONT_MENU EFonts::MENU_TAHOMA
+#define FONT_MENU_NAME EFonts::MENU_ARIAL
+#define FONT_MENU EFonts::MENU_ARIAL
 
 //TODO: stop using me
 namespace InputHelper
@@ -75,7 +75,8 @@ void CMenu::CreateLists()
 			{
 				new CItemGroup{
 				"Main", {
-				new CItemBool("Active", &Vars::ESP::Enabled.m_Var)
+				new CItemBool("Active", &Vars::ESP::Enabled.m_Var),
+				new CItemBool("Players", &Vars::ESP::Players::Enabled.m_Var)
 }
 }
 }

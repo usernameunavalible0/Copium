@@ -57,48 +57,7 @@ namespace Vars
 {
 	namespace Aimbot
 	{
-		inline bool Enabled = true;
-
-		namespace Hitscan
-		{
-			inline CVar<bool> ZoomedOnly{ true, "Zoomed Only" };
-			inline CVar<float> AimFOV{ 180.0f, "Aim FOV" };
-			inline CVar<bool> ScanHitboxes{ true, "Scan Body" };
-			inline CVar<bool> ScanHead{ true, "Scan Head" };
-			inline CVar<bool> ScanBuildings{ true, "Scan Buildings" };
-			inline CVar<bool> SpectatedSmooth={ true, "Spectate Smooth" };
-			inline CVar<int> SmoothingAmount={ 2, "Smoothing Amount" };
-			inline CVar<bool> WaitForCharge{ true, "Wait for charge" };
-			inline CVar<bool> WaitForHeadshot{ true, "Wait for headshot" };
-		}
-
-		namespace Global
-		{
-			inline CVar<bool> SilentAim{ true, "Enable Silent Aimbot" };
-			inline CVar<bool> IgnoreDisguised{ false, "Ignore Disguised" };
-			inline CVar<bool> Enabled{ true, "Enabled" };
-			inline CVar<int> AimKey{ VK_SHIFT, "Aim Key" };
-			inline CVar<bool> AlwaysActive{ false, "Always Active" };
-			inline CVar<bool> AutoShoot{ true, "Autoshoot?" };
-
-			inline CVar<bool> AimSentry{ false, "Aim Sentry" };
-			inline CVar<bool> AimDispencer{ false, "Aim Dispencer" };
-			inline CVar<bool> AimTele{ false, "Aim Teleporter" };
-
-			inline bool IgnoreCloaked = true;
-			inline bool IgnoreFriends = false;
-			inline bool IgnoreInvunirible = true;
-			inline bool IgnoreTaunting = false;
-			inline int AimHitbox = 0; // 0 auto, 1 head, 2 body
-			inline bool bAimLethal = false;
-
-			inline bool NoMelee = false;
-			inline bool PredictSwing = true;
-			inline bool RangeCheck = true;
-
-			inline float SmoothDuration = 0.0f;
-
-		}
+		
 	}
 
 	namespace ESP

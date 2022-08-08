@@ -6,7 +6,7 @@
 void CFeatures_ESP::Render(C_TFPlayer* pLocal)
 {
 
-	if (!Active)
+	if (!Vars::ESP::Enabled.m_Var)
 		return;
 
 	int x, y, w, h;
