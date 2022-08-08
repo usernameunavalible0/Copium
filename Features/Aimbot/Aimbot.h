@@ -42,15 +42,12 @@ private:
 
 	void MakeVector(Vector angle, Vector& vector);
 
-	Vector calc_angle(Vector src, Vector dst);
-
 	int GetBestTarget(C_TFPlayer* pLocal, CUserCmd* pCommand);
 
 	int GetBestHitbox(C_TFPlayer* pLocal, C_TFPlayer* pEntity);
 
 	bool CanAmbassadorHeadshot(C_TFPlayer* pLocal);
 
-	void fix_movement(CUserCmd* pCmd, const Vector& vecTargetAngle);
 };
 
 namespace F { inline CAimbot gAim; } //dsajkhfdlksahf

@@ -182,20 +182,6 @@ void FixMove(CUserCmd* pCmd, Vector m_vOldAngles, float m_fOldForward, float m_f
 	pCmd->sidemove = sin(DEG2RAD(deltaView)) * m_fOldForward + sin(DEG2RAD(deltaView + 90.f)) * m_fOldSidemove;
 }
 
-Vector CAimbot::calc_angle(Vector src, Vector dst)
-{
-	Vector AimAngles, delta;
-	float hyp;
-	delta = src - dst;
-	hyp = sqrtf((delta.x * delta.x) + (delta.y * delta.y)); //SUPER SECRET IMPROVEMENT CODE NAME DONUT STEEL
-	AimAngles.x = atanf(delta.z / hyp) * RADPI;
-	AimAngles.y = atanf(delta.y / delta.x) * RADPI;
-	AimAngles.z = 0.0f;
-	if (delta.x >= 0.0)
-		AimAngles.y += 180.0f;
-	return AimAngles;
-}
-
 void CAimbot::MakeVector(Vector angle, Vector& vector)
 {
 	float pitch, yaw, tmp;
@@ -212,7 +198,7 @@ float CAimbot::GetFOV(Vector angle, Vector src, Vector dst)
 {
 	Vector ang, aim;
 	float mag, u_dot_v;
-	ang = calc_angle(src, dst);
+	ang = CalcAngle(src, dst);
 
 
 	MakeVector(angle, aim);
@@ -526,7 +512,7 @@ int CAimbot::GetBestHitbox(C_TFPlayer* pLocal, C_TFPlayer* pEntity)
 				iBestHitbox = HITBOX_HEAD;
 			else
 				iBestHitbox = HITBOX_BODY;
-			for (int i = iBestHitbox; i < 17; i++) // int i equals prioritized hitbux, so above we check the weapon so it prioritizes the proper hitbox.
+			for (int i = iBestHitbox; i < HITBOX_RIGHT_FOREARM; i++) // int i equals prioritized hitbux, so above we check the weapon so it prioritizes the proper hitbox.
 			{
 				if (G::Util.IsVisible2(pLocal, pEntity, pLocal->Weapon_ShootPosition(), pEntity->GetHitboxPosition(i)))
 					return i;

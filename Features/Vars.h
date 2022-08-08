@@ -61,8 +61,7 @@ namespace Vars
 
 		namespace Hitscan
 		{
-			inline CVar<bool> ZoomedOnly{ false, "Zoomed Only" };
-			inline int SortMethod = 1; // 0 fov, 1 distance
+			inline CVar<bool> ZoomedOnly{ true, "Zoomed Only" };
 			inline CVar<float> AimFOV{ 180.0f, "Aim FOV" };
 			inline CVar<bool> ScanHitboxes{ true, "Scan Body" };
 			inline CVar<bool> ScanHead{ true, "Scan Head" };
@@ -80,11 +79,8 @@ namespace Vars
 			inline CVar<bool> Enabled{ true, "Enabled" };
 			inline CVar<int> AimKey{ VK_SHIFT, "Aim Key" };
 			inline CVar<bool> AlwaysActive{ false, "Always Active" };
-			inline CVar<int> AimMethod{ 0, "Aim Method" }; // 0 normal, 1 smooth, 2 silent
 			inline CVar<bool> AutoShoot{ true, "Autoshoot?" };
-			inline bool WaitForCharge = true;
 
-			inline bool AimPlayers = true;
 			inline CVar<bool> AimSentry{ false, "Aim Sentry" };
 			inline CVar<bool> AimDispencer{ false, "Aim Dispencer" };
 			inline CVar<bool> AimTele{ false, "Aim Teleporter" };
@@ -93,17 +89,14 @@ namespace Vars
 			inline bool IgnoreFriends = false;
 			inline bool IgnoreInvunirible = true;
 			inline bool IgnoreTaunting = false;
-			inline int AimHitbox = 1; // 0 auto, 1 head, 2 body
+			inline int AimHitbox = 0; // 0 auto, 1 head, 2 body
 			inline bool bAimLethal = false;
 
-			inline int SortMethod = 1; // 0 fov, 1 dist, 2 auto
 			inline bool NoMelee = false;
 			inline bool PredictSwing = true;
 			inline bool RangeCheck = true;
 
 			inline float SmoothDuration = 0.0f;
-
-			inline float DrawAimFov = 0.1f;
 
 		}
 	}
@@ -199,6 +192,8 @@ namespace Vars
 		inline bool IgnoreCloaked = false;
 		inline bool ScopedOnly = false;
 		inline bool AutoBackstab = true;
+		inline CVar<bool> Detonate{ true, "Auto Detonate" };
+		inline CVar<float> DRadiusScale{ 1100.f, "Detonate Radius" };
 	}
 
 	namespace Misc
