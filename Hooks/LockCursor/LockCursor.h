@@ -10,16 +10,8 @@ namespace Hooks
 		namespace OnScreenSizeChanged
 		{
 			constexpr uint32 Index = 111u;
-			using FN = void(__fastcall*)(int, int);
-			void __fastcall Detour(int oldWidth, int oldHeight);
-		}
-
-		namespace LockCursor
-		{
-			using FN = void(__fastcall*)();
-			constexpr uint32 Index = 65u; //used to be 65
-
-			void __fastcall Detour();
+			using FN = void(__fastcall*)(void*, void*, int, int);
+			void __fastcall Detour(void* ecx, void* edx, int oldWidth, int oldHeight);
 		}
 
 		void Initialize();
