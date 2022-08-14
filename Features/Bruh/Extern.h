@@ -1,6 +1,7 @@
 #pragma once
 #include "../../SDK/SDK.h"
 
+/*
 bool C_BaseEntity::IsVisible(C_BaseEntity* pLocal)
 {
 	trace_t trace;
@@ -18,4 +19,4 @@ bool C_BaseEntity::IsVisible(C_BaseEntity* pLocal)
 	//if (trace.m_pEnt == this)
 	//return true;
 	return (trace.m_pEnt == this);
-}
+} */

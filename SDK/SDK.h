@@ -4,6 +4,9 @@
 
 #define XASSERT(x) if (x) Error(#x)
 
+#define PI 3.14159265358979323846f
+#define ZOOM_BASE_DAMAGE 150.0f;
+
 #define FAILED_TO_INITIALIZE false
 #define FAILED_TO_HOOK false
 

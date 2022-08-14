@@ -77,6 +77,26 @@ void CMenu::CreateLists()
 				"Main", {
 				new CItemBool("Active", &Vars::ESP::Enabled.m_Var),
 				new CItemBool("Players", &Vars::ESP::Players::Enabled.m_Var)
+						}
+				}
+			}
+			},
+			new CItemList{
+				"Aimbot", {
+				new CItemGroup{
+				"Main", {
+				new CItemBool("Active", &Vars::Aimbot::Active.m_Var),
+				new CItemInt("Aim Key", &Vars::Aimbot::AimKey.m_Var),
+				new CItemBool("Wait For Charge", &Vars::Aimbot::WaitForCharge.m_Var),
+				new CItemInt(Vars::Aimbot::AimMethod.m_szDisplayName, &Vars::Aimbot::AimMethod.m_Var),
+				new CItemFloat("Smooth Amount", &Vars::Aimbot::SmoothAmount.m_Var),
+				new CItemBool("Auto Shoot", &Vars::Aimbot::AutoShoot.m_Var),
+				new CItemBool("Ignore Team", &Vars::Aimbot::IgnoreTeam.m_Var),
+				new CItemBool("Ignore Cloaked", &Vars::Aimbot::IgnoreCloaked.m_Var),
+				new CItemBool("Ignore Disguised", &Vars::Aimbot::IgnoreDisguised.m_Var),
+				new CItemBool("Zoomed Only", &Vars::Aimbot::ZoomedOnly.m_Var),
+				new CItemInt("Aim Fov", &Vars::Aimbot::AimFOV.m_Var),
+				new CItemInt("Aim Hitbox", &Vars::Aimbot::AimHitbox.m_Var)
 }
 }
 }

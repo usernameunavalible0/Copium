@@ -75,7 +75,6 @@ public:
 	M_NETVAR(m_bUseClassAnimations, bool, "CTFPlayer", "m_bUseClassAnimations");
 	M_NETVAR(m_iClassModelParity, int, "CTFPlayer", "m_iClassModelParity");
 	M_NETVAR(m_Shared, void*, "CTFPlayer", "m_Shared");
-	M_NETVAR(m_nPlayerCond, int, "CTFPlayer", "m_nPlayerCond");
 	M_NETVAR(m_bJumping, bool, "CTFPlayer", "m_bJumping");
 	M_NETVAR(m_nNumHealers, int, "CTFPlayer", "m_nNumHealers");
 	M_NETVAR(m_iCritMult, int, "CTFPlayer", "m_iCritMult");
@@ -156,14 +155,10 @@ public:
 	M_NETVAR(m_iCrits, int, "CTFPlayer", "m_iCrits");
 	M_NETVAR(m_RoundScoreData, void*, "CTFPlayer", "m_RoundScoreData");
 	M_NETVAR(m_ConditionList, void*, "CTFPlayer", "m_ConditionList");
-	M_NETVAR(_condition_bits, int, "CTFPlayer", "_condition_bits");
 	M_NETVAR(m_iTauntIndex, int, "CTFPlayer", "m_iTauntIndex");
 	M_NETVAR(m_iTauntConcept, int, "CTFPlayer", "m_iTauntConcept");
-	M_NETVAR(m_nPlayerCondEx, int, "CTFPlayer", "m_nPlayerCondEx");
 	M_NETVAR(m_iStunIndex, int, "CTFPlayer", "m_iStunIndex");
 	M_NETVAR(m_nHalloweenBombHeadStage, int, "CTFPlayer", "m_nHalloweenBombHeadStage");
-	M_NETVAR(m_nPlayerCondEx3, int, "CTFPlayer", "m_nPlayerCondEx3");
-	M_NETVAR(m_nPlayerCondEx2, int, "CTFPlayer", "m_nPlayerCondEx2");
 	M_NETVAR(m_nStreaks, void*, "CTFPlayer", "m_nStreaks");
 	M_NETVAR(m_unTauntSourceItemID_Low, int, "CTFPlayer", "m_unTauntSourceItemID_Low");
 	M_NETVAR(m_unTauntSourceItemID_High, int, "CTFPlayer", "m_unTauntSourceItemID_High");
@@ -174,7 +169,6 @@ public:
 	M_NETVAR(m_askForBallTime, float, "CTFPlayer", "m_askForBallTime");
 	M_NETVAR(m_bKingRuneBuffActive, bool, "CTFPlayer", "m_bKingRuneBuffActive");
 	M_NETVAR(m_pProvider, int, "CTFPlayer", "m_pProvider");
-	M_NETVAR(m_nPlayerCondEx4, int, "CTFPlayer", "m_nPlayerCondEx4");
 	M_NETVAR(m_flHolsterAnimTime, float, "CTFPlayer", "m_flHolsterAnimTime");
 	M_NETVAR(m_hSwitchTo, EHANDLE, "CTFPlayer", "m_hSwitchTo");
 	M_NETVAR(m_hItem, EHANDLE, "CTFPlayer", "m_hItem");
@@ -226,112 +220,12 @@ public:
 	
 public:
 
-	inline Vector GetHitboxPosition(int iHitbox)
-	{
-		const model_t* model = GetModel();
-		if (!model)
-			return Vector();
-
-		studiohdr_t* hdr = I::ModelInfoClient->GetStudiomodel(model);
-		if (!hdr)
-			return Vector();
-
-		matrix3x4_t matrix[128];
-		if (!SetupBones(matrix, 128, 0x100, I::GlobalVars->curtime))
-			return Vector();
-
-		mstudiohitboxset_t* set = hdr->pHitboxSet(m_nHitboxSet()); // WHAT IS THIS
-		if (!set)
-			return Vector();
-
-		mstudiobbox_t* box = set->pHitbox(iHitbox);
-		if (!box)
-			return Vector();
-
-		Vector center = (box->bbmin + box->bbmax) * 0.5f;
-
-		Vector vHitbox;
-
-		VectorTransform(center, matrix[box->bone], vHitbox);
-
-		return vHitbox;
-	}
-
 	C_TFWeaponBase* GetActiveTFWeapon();
 
 	inline float m_flInvisibility()
 	{
 		static const int nOffset = GetNetVar("CTFPlayer", "m_flInvisChangeCompleteTime") - 0x8;
 		return *reinterpret_cast<float*>(reinterpret_cast<DWORD>(this) + nOffset);
-	}
-
-	//Credits to KGB
-	inline bool InCond(const ETFCond cond)
-	{
-		const int iCond = static_cast<int>(cond);
-
-		switch (iCond / 32)
-		{
-		case 0:
-		{
-			const int bit = (1 << iCond);
-			if ((m_nPlayerCond() & bit) == bit)
-			{
-				return true;
-			}
-
-			if ((_condition_bits() & bit) == bit)
-			{
-				return true;
-			}
-
-			break;
-		}
-		case 1:
-		{
-			const int bit = 1 << (iCond - 32);
-			if ((m_nPlayerCondEx() & bit) == bit)
-			{
-				return true;
-			}
-
-			break;
-		}
-		case 2:
-		{
-			const int bit = 1 << (iCond - 64);
-			if ((m_nPlayerCondEx2() & bit) == bit)
-			{
-				return true;
-			}
-
-			break;
-		}
-		case 3:
-		{
-			const int bit = 1 << (iCond - 96);
-			if ((m_nPlayerCondEx3() & bit) == bit)
-			{
-				return true;
-			}
-
-			break;
-		}
-		case 4:
-		{
-			const int bit = 1 << (iCond - 128);
-			if ((m_nPlayerCondEx4() & bit) == bit)
-			{
-				return true;
-			}
-
-			break;
-		}
-		default:
-			break;
-		}
-
-		return false;
 	}
 
 	inline bool IsPlayerOnSteamFriendsList()

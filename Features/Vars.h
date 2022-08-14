@@ -3,61 +3,28 @@
 #include "../SDK/SDK.h"
 
 template <class T>
-
 class CVar {
 public:
-	CVar(const T v, const char* const name) {
-		m_Var = v;
-		m_name = name;
-	}
-
-	CVar(const T v, const T step, const T min, const T max, const char* const name) {
-		m_Var = v;
-		m_step = step;
-		m_min = min;
-		m_max = max;
-		m_name = name;
-	}
-
-public:
-	__inline T Get() const {
-		return m_Var;
-	}
-
-	__inline void Set(const T v) {
-		m_Var = v;
-	}
-
-	__inline const char* GetName() const {
-		return m_name;
-	}
-
-	__inline T GetStep() const {
-		return m_step;
-	}
-
-	__inline T GetMin() const {
-		return m_min;
-	}
-
-	__inline T GetMax() const {
-		return m_max;
-	}
-
-public:
-	T m_Var = { };
-	T m_min = { };
-	T m_max = { };
-	T m_step = { };
-
-	const char* m_name = "";
+	T m_Var;
+	const char* m_szDisplayName;
 };
 
 namespace Vars
 {
 	namespace Aimbot
 	{
-		
+		inline CVar<bool> Active{ true, "Enabled" };
+		inline CVar<int> AimKey{ VK_SHIFT, "Key to toggle Aimbot" };
+		inline CVar<bool> WaitForCharge{ true, "Ambassador wait for charge" };
+		inline CVar<int> AimMethod{ 2, "0 = Plain, 1 = Smooth, 2 = Silent" };
+		inline CVar<float> SmoothAmount{ 5.0, "Aimbot Smoothing amount" };
+		inline CVar<bool> AutoShoot{ true, "Should the Aimbot shoot for you?" };
+		inline CVar<bool> IgnoreTeam{ false, "Should the Aimbot aim at both teams?" };
+		inline CVar<bool> IgnoreCloaked{ true, "Should the Aimbot aim at cloaked spys?" };
+		inline CVar<bool> IgnoreDisguised{ true, "Should the Aimbot aim at disguised spys?" };
+		inline CVar<bool> ZoomedOnly{ true, "Scoped Only?" };
+		inline CVar<int> AimFOV{ 15, "Aimbot Field of View" };
+		inline CVar<int> AimHitbox{ 0, "0 = Auto, 1 = Head, 2 = Body" };
 	}
 
 	namespace ESP

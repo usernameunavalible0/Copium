@@ -279,6 +279,7 @@ public:
 	M_NETVAR(m_iState, int, "CBaseCombatWeapon", "m_iState");
 	M_NETVAR(m_hOwner, CBaseCombatCharacterHandle, "CBaseCombatWeapon", "m_hOwner");
 	M_NETVAR(m_flChargeBeginTime, float, "CBaseCombatWeapon", "m_flChargeBeginTime");
+	//M_NETVAR(GetChargeDamage, float, "CTFSniperRifle", "m_flChargedDamage");
 public:
 	inline bool CanPrimaryAttack()
 	{

@@ -298,11 +298,15 @@ IMaterial* CUtil::CreateMaterial(const char* szVars)
 bool CUtil::IsHeadshotWeapon(C_TFPlayer* pLocal, C_BaseCombatWeapon* pWep)
 {
 	if (pWep->GetSlot() == 0 && pLocal->m_iClass() == TF_CLASS_SNIPER)
+	{
 		if (pWep->m_iItemDefinitionIndex() != Sniper_m_TheHuntsman && pWep->m_iItemDefinitionIndex() != Sniper_m_TheFortifiedCompound)
 			return true;
-
-	if (pWep->m_iItemDefinitionIndex() == Spy_m_TheAmbassador || pWep->m_iItemDefinitionIndex() == Spy_m_FestiveAmbassador)
-		return true;
+	}
+	else if (pWep->GetSlot() == 0 && pLocal->m_iClass() == TF_CLASS_SPY)
+	{
+		if (pWep->m_iItemDefinitionIndex() == Spy_m_TheAmbassador || pWep->m_iItemDefinitionIndex() == Spy_m_FestiveAmbassador)
+			return true;
+	}
 
 	return false;
 }

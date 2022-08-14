@@ -354,14 +354,114 @@ public:
 	M_NETVAR(m_bAnimatedEveryTick, bool, "CBaseEntity", "m_bAnimatedEveryTick");
 	M_NETVAR(m_bAlternateSorting, bool, "CBaseEntity", "m_bAlternateSorting");
 	M_NETVAR(m_nModelIndexOverrides, void*, "CBaseEntity", "m_nModelIndexOverrides");
+	M_NETVAR(m_nHitboxSet, int, "CBaseAnimating", "m_nHitboxSet");
+	M_NETVAR(m_nPlayerCond, int, "CTFPlayer", "m_nPlayerCond");
+	M_NETVAR(m_nPlayerCondEx, int, "CTFPlayer", "m_nPlayerCondEx");
+	M_NETVAR(m_nPlayerCondEx3, int, "CTFPlayer", "m_nPlayerCondEx3");
+	M_NETVAR(m_nPlayerCondEx2, int, "CTFPlayer", "m_nPlayerCondEx2");
+	M_NETVAR(m_nPlayerCondEx4, int, "CTFPlayer", "m_nPlayerCondEx4");
+	M_NETVAR(_condition_bits, int, "CTFPlayer", "_condition_bits");
 
 public:
+
+	//Credits to KGB
+	inline bool InCond(const ETFCond cond)
+	{
+		const int iCond = static_cast<int>(cond);
+
+		switch (iCond / 32)
+		{
+		case 0:
+		{
+			const int bit = (1 << iCond);
+			if ((m_nPlayerCond() & bit) == bit)
+			{
+				return true;
+			}
+
+			if ((_condition_bits() & bit) == bit)
+			{
+				return true;
+			}
+
+			break;
+		}
+		case 1:
+		{
+			const int bit = 1 << (iCond - 32);
+			if ((m_nPlayerCondEx() & bit) == bit)
+			{
+				return true;
+			}
+
+			break;
+		}
+		case 2:
+		{
+			const int bit = 1 << (iCond - 64);
+			if ((m_nPlayerCondEx2() & bit) == bit)
+			{
+				return true;
+			}
+
+			break;
+		}
+		case 3:
+		{
+			const int bit = 1 << (iCond - 96);
+			if ((m_nPlayerCondEx3() & bit) == bit)
+			{
+				return true;
+			}
+
+			break;
+		}
+		case 4:
+		{
+			const int bit = 1 << (iCond - 128);
+			if ((m_nPlayerCondEx4() & bit) == bit)
+			{
+				return true;
+			}
+
+			break;
+		}
+		default:
+			break;
+		}
+
+		return false;
+	}
+
+	inline bool GetHitboxPosition(const int nHitbox, Vector& vPosition)
+	{
+		const model_t* pModel = this->GetModel();
+
+		if (!pModel)
+			return false;
+
+		const studiohdr_t* pStudioHdr = I::ModelInfoClient->GetStudiomodel(pModel);
+
+		if (!pStudioHdr)
+			return false;
+
+		const mstudiobbox_t* pBox = pStudioHdr->pHitbox(nHitbox, this->m_nHitboxSet());
+
+		if (!pBox || (pBox->bone >= MAXSTUDIOBONES) || (pBox->bone < 0))
+			return false;
+
+		matrix3x4_t BoneMatrix[MAXSTUDIOBONES];
+		if (!SetupBones(BoneMatrix, MAXSTUDIOBONES, BONE_USED_BY_HITBOX, I::GlobalVars->curtime))
+			return false;
+
+		VectorTransform((pBox->bbmax + pBox->bbmin) * 0.5f, BoneMatrix[pBox->bone], vPosition);
+		return true;
+	}
+
 	inline int GetMoveType()
 	{
 		return *reinterpret_cast<int*>(reinterpret_cast<DWORD>(this) + 0x1A4);
 	}
-
-	bool IsVisible(C_BaseEntity* pLocal);
 
 
 
