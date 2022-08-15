@@ -17,13 +17,13 @@ namespace Vars
 		inline CVar<int> AimKey{ VK_SHIFT, "Key to toggle Aimbot" };
 		inline CVar<bool> WaitForCharge{ true, "Ambassador wait for charge" };
 		inline CVar<int> AimMethod{ 2, "0 = Plain, 1 = Smooth, 2 = Silent" };
-		inline CVar<float> SmoothAmount{ 5.0, "Aimbot Smoothing amount" };
+		inline CVar<float> SmoothAmount{ 0.0, "Aimbot Smoothing amount" };
 		inline CVar<bool> AutoShoot{ true, "Should the Aimbot shoot for you?" };
 		inline CVar<bool> IgnoreTeam{ false, "Should the Aimbot aim at both teams?" };
 		inline CVar<bool> IgnoreCloaked{ true, "Should the Aimbot aim at cloaked spys?" };
 		inline CVar<bool> IgnoreDisguised{ true, "Should the Aimbot aim at disguised spys?" };
 		inline CVar<bool> ZoomedOnly{ true, "Scoped Only?" };
-		inline CVar<int> AimFOV{ 15, "Aimbot Field of View" };
+		inline CVar<int> AimFOV{ 180, "Aimbot Field of View" };
 		inline CVar<int> AimHitbox{ 0, "0 = Auto, 1 = Head, 2 = Body" };
 	}
 

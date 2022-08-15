@@ -23,6 +23,7 @@
 #include "../shared/usercmd.h"
 #include "../shared/ehandle.h"
 #include "../../public/engine/ivmodelinfo.h"
+#include "../../public/tier1/utlflags.h"
 
 namespace I { inline int32* PredictionRandomSeed = nullptr; }
 
@@ -52,6 +53,11 @@ struct FireBulletsInfo_t;
 struct EmitSound_t;
 
 typedef unsigned int AimEntsListHandle_t;
+
+#define M_OFFSETGET(name, type, offset) __inline type Get##name() \
+{ \
+	return *reinterpret_cast<type*>(this + offset); \
+}
 
 #define INVALID_AIMENTS_LIST_HANDLE	(AimEntsListHandle_t)~0
 
@@ -361,8 +367,24 @@ public:
 	M_NETVAR(m_nPlayerCondEx2, int, "CTFPlayer", "m_nPlayerCondEx2");
 	M_NETVAR(m_nPlayerCondEx4, int, "CTFPlayer", "m_nPlayerCondEx4");
 	M_NETVAR(_condition_bits, int, "CTFPlayer", "_condition_bits");
+	M_NETVAR(m_hThrower, void*, "CBaseGrenade", "m_hThrower");
+	M_NETVAR(m_fFlags, CUtlFlags<int>, "CBasePlayer", "m_fFlags");
+
+	M_OFFSETGET(PipebombType, int, 0x8FC)
 
 public:
+
+	inline C_BaseCombatWeapon* GetWeaponFromSlot(const int nSlot) {
+		static const int nOffset = GetNetVar("CBaseCombatCharacter", "m_hMyWeapons");
+		int hWeapon = *reinterpret_cast<int*>(this + (nOffset + (nSlot * 0x4)));
+		return reinterpret_cast<C_BaseCombatWeapon*>(I::ClientEntityList->GetClientEntityFromHandle(hWeapon)->As<C_BaseEntity*>());
+	}
+
+	inline bool IsInValidTeam()
+	{
+		const int nTeam = GetTeamNumber();
+		return (nTeam == 2 || nTeam == 3);
+	}
 
 	//Credits to KGB
 	inline bool InCond(const ETFCond cond)
@@ -431,6 +453,13 @@ public:
 		}
 
 		return false;
+	}
+
+	inline Vector GetHitboxPos(const int nHitbox)
+	{
+		Vector vPos;
+		GetHitboxPosition(nHitbox, vPos);
+		return vPos;
 	}
 
 	inline bool GetHitboxPosition(const int nHitbox, Vector& vPosition)

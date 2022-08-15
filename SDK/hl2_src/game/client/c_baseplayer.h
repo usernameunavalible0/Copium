@@ -15,7 +15,6 @@
 #include "../shared/GameEventListener.h"
 #include "../shared/usercmd.h"
 #include "../../public/PlayerState.h"
-#include "../../public/tier1/utlflags.h"
 
 class CSteamID;
 class IRagdoll;
@@ -189,7 +188,6 @@ public:
 	M_NETVAR(m_iBonusProgress, int, "CBasePlayer", "m_iBonusProgress");
 	M_NETVAR(m_iBonusChallenge, int, "CBasePlayer", "m_iBonusChallenge");
 	M_NETVAR(m_flMaxspeed, float, "CBasePlayer", "m_flMaxspeed");
-	M_NETVAR(m_fFlags, CUtlFlags<int>, "CBasePlayer", "m_fFlags");
 	M_NETVAR(m_iObserverMode, int, "CBasePlayer", "m_iObserverMode");
 	M_NETVAR(m_hObserverTarget, EHANDLE, "CBasePlayer", "m_hObserverTarget");
 	M_NETVAR(m_hViewModel, EHANDLE, "CBasePlayer", "m_hViewModel[0]");
